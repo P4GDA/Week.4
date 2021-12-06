@@ -1,0 +1,201 @@
+---
+title: "4.3 Lists - Tutorial"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, error = TRUE, warning = TRUE)
+
+library(ottr)
+library(testthat)
+```
+
+---
+
+At the end of this tutorial you should be able to:
+
+* Create list with or without names
+* Add names to a list
+* Index a list with positional and name indices
+* Index elements in data structures within a list
+* Modify a list and elements within the list
+
+---
+
+## 4.3.1: Introduction to Lists
+
+---
+
+You are studying a group of patients with breast cancer. In this tutorial will we create a list to hold all of the information about the study.
+
+Mutations in 4 genes commonly associated with breast cancer are being examined: BRCA1, BRCA2, PTEN, TP53. Create a character vector called "genes" to hold the names of the 4 genes in the order written.
+```{r}
+# Write and execute your code here
+
+```
+
+```{r}
+. = ottr::check("tests/Tutorial.W4.3.1.a.R")
+```
+**Check your answer by running the above block** 
+
+Three hospitals are participating in the study. Below are the names of the hospitals, three letter hospital identifiers, and the number of patients at each hospital involved in the study.
+
+Greenview General Hospital  GGH     3
+Mount Horn Hospital         MHH     5
+Bayside Hospital            BSH     1
+
+Create a list called "hospitals". The elements should be the number of patients involved from each hospital. The elements should be named using the hospitals' three letter identifiers. Add names to elements during list creation.
+```{r}
+# Write and execute your code here
+
+```
+
+```{r}
+. = ottr::check("tests/Tutorial.W4.3.1.b.R")
+```
+**Check your answer by running the above block** 
+
+Without adding names, create a list containing (in order):
+
+- the total number of patients involved in the study: 9
+- the `genes` vector
+- the `hospitals` list
+
+Call the list "breast_cancer_data".
+```{r}
+# Write and execute your code here
+
+```
+
+```{r}
+. = ottr::check("tests/Tutorial.W4.3.1.c.R")
+```
+**Check your answer by running the above block** 
+
+Use positional indexing to assign the names of the 4 genes being used to a variable named "indexed_genes".
+```{r}
+# Write and execute your code here
+
+```
+
+```{r}
+. = ottr::check("tests/Tutorial.W4.3.1.d.R")
+```
+**Check your answer by running the above block** 
+
+Add the following names to the list elements: "total_patients", "genes", "hospital_pts"
+```{r}
+# Write and execute your code here
+
+```
+
+```{r}
+. = ottr::check("tests/Tutorial.W4.3.1.e.R")
+```
+**Check your answer by running the above block** 
+
+Use named indexing to assign the total number of patients involved in the study to a variable named "num_patients".
+```{r}
+# Write and execute your code here
+
+```
+
+```{r}
+. = ottr::check("tests/Tutorial.W4.3.1.f.R")
+```
+**Check your answer by running the above block** 
+
+---
+
+## 4.3.2 Working with Lists
+
+---
+
+The following logical matrix contains information about which patients have mutations in each of the 4 genes.
+
+```{r}
+pt_1 <- c(TRUE, FALSE, FALSE, FALSE)
+pt_2 <- c(FALSE, FALSE, FALSE, FALSE)
+pt_3 <- c(FALSE, FALSE, FALSE, TRUE)
+pt_4 <- c(FALSE, TRUE, FALSE, FALSE)
+pt_5 <- c(FALSE, FALSE, FALSE, FALSE)
+pt_6 <- c(FALSE, FALSE, TRUE, FALSE)
+pt_7 <- c(FALSE, FALSE, FALSE, TRUE)
+pt_8 <- c(FALSE, FALSE, TRUE, FALSE)
+pt_9 <- c(TRUE, FALSE, TRUE, FALSE)
+patient_mutations <- rbind(pt_1, pt_2, pt_3, pt_4, pt_5, pt_6, pt_7, pt_8, pt_9)
+colnames(patient_mutations) <- c("BRCA1", "BRCA2", "PTEN", "TP53")
+patient_mutations
+```
+
+Add this matrix to the `breast_cancer_data` list, name the element "pt_mutations".
+```{r}
+# Write and execute your code here
+
+```
+
+```{r}
+. = ottr::check("tests/Tutorial.W4.3.2.a.R")
+```
+**Check your answer by running the above block** 
+
+Use named indexing to assign the number of patients involved in the study at Greenview General Hospital to a variable named "GGH_num_patients".
+```{r}
+# Write and execute your code here
+
+```
+
+```{r}
+. = ottr::check("tests/Tutorial.W4.3.2.b.R")
+```
+**Check your answer by running the above block** 
+
+Assign the patient mutation information for patient number 5 to a variable named "pt_5_mutations".
+```{r}
+# Write and execute your code here
+
+```
+
+```{r}
+. = ottr::check("tests/Tutorial.W4.3.2.c.R")
+```
+**Check your answer by running the above block** 
+
+A new patient from Bayside Hospital has joined the study. The patient has a mutation in the BRCA2 gene and no mutations in any of the other 3 genes.
+
+Update the list to include this patient. You will need to:
+- add the patient to the matrix at "pt_mutations" (Hint: this will be pt_10)
+```{r}
+# Write and execute your code here
+
+```
+
+```{r}
+. = ottr::check("tests/Tutorial.W4.3.2.d.R")
+```
+**Check your answer by running the above block** 
+
+- update the total number of patients involved in the study
+```{r}
+# Write and execute your code here
+
+```
+
+```{r}
+. = ottr::check("tests/Tutorial.W4.3.2.e.R")
+```
+**Check your answer by running the above block** 
+
+- update the number of patients from Bayside Hospital
+```{r}
+# Write and execute your code here
+
+```
+
+```{r}
+. = ottr::check("tests/Tutorial.W4.3.2.f.R")
+```
+**Check your answer by running the above block** 
+
+---
