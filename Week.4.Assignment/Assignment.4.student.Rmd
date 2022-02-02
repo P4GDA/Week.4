@@ -9,6 +9,7 @@ knitr::opts_chunk$set(echo = TRUE, error = TRUE, warning = TRUE)
 library(ottr)
 library(testthat)
 ```
+**Run the above block to load required packages**
 
 ---
 
@@ -29,7 +30,7 @@ This assignment covers the content in week 4 lectures and tutorials.
 
 ---
 
-BioID is a method for determining which proteins are in close proximity to one another within the cell. In this assignment we will work with data from the Human Cell Map: (ref)
+BioID is a method for determining which proteins are in close proximity to one another within the cell. In this assignment we will work with data from the Human Cell Map: (https://cell-map.org/).
 
 To ensure that the main data set is entered correctly, a matrix with the SAINT scores for each protein pair is provided. A SAINT score is measurement of the confidence that 2 proteins interact with one another. In the matrix below, a score of 1 indicates that 2 proteins definitely interact, and 0 indicates that there is no evidence of interaction. Along the diagonal (proteins vs. themselves) all values are 1.
 
@@ -41,7 +42,7 @@ colnames(PPI_scores) <- proteins
 PPI_scores
 ```
 
-Looking at the above matrix you can see that AARS1 interacts with CS, and that AARS1 does not interact with COIL.
+Looking at the matrix above you can see that AARS1 interacts with CS, and that AARS1 does not interact with COIL.
 
 ---
 
@@ -79,7 +80,7 @@ Create a character matrix called "cellular_localization" with 12 rows and 2 colu
 
 #### b.
 (2 marks) 
-Two proteins were not included in the above matrix as they have an unknown cellular localization. Add two new rows to the matrix with the information below.
+Two proteins were not included in the above matrix as they have an unknown cellular localization. Add two new rows to the bottom of matrix with the information below (use `?` instead of `NA`).
 
 | Protein | Compartment  | Subcompartment |
 | ------- | ------------ | -------------- |
@@ -123,7 +124,7 @@ Use **positional** indexing to output the main compartment for all proteins. Ass
 
 #### e.
 (1 mark)
-Use logical indexing to output all of the rows (proteins) in `cellular_localization` with a main compartment equal to "mitochondria". Assign the output matrix to a variable named "mitochondrial_proteins".
+Use logical indexing to output all of the rows (proteins) in `cellular_localization` where the value for the main compartment is equal to "mitochondria". Assign the output matrix to a variable named "mitochondrial_proteins".
 ```{r Assignment.W4.1.e}
 # Write and execute your code here
 
@@ -136,7 +137,7 @@ Use logical indexing to output all of the rows (proteins) in `cellular_localizat
 
 #### f.
 (1 mark)
-Use logical indexing to output all of the rows (proteins) in `cellular_localization` with a main compartment equal to "centrosome". Assign the output matrix to a variable named "centrosome_proteins".
+Use logical indexing to output all of the rows (proteins) in `cellular_localization` where the value for the main compartment is equal to "centrosome". Assign the output matrix to a variable named "centrosome_proteins".
 ```{r Assignment.W4.1.f}
 # Write and execute your code here
 
@@ -172,7 +173,7 @@ Create a list called "PPI_data" with the following elements in the order they ar
 
 #### b.
 (1 mark)
-Use **positional** indexing to output the value of the second element in `PPI_data`. Assign the output value to a variable named "PPI_data_element_2".
+Use **positional** indexing to output the VALUE of the second element in `PPI_data`. Assign the output value to a variable named "PPI_data_element_2".
 ```{r Assignment.W4.2.b}
 # Write and execute your code here
 
@@ -217,7 +218,7 @@ Use **named** indexing to output the full cellular localization information for 
 
 #### e.
 (1 mark)
-Add a new element called "proteins" to the `PPI_data` list. It should be a character vector with the names of all 14 proteins in alphabetical order. (Hint: you should check the row names or the column names of `PPI_scores`.)
+Add a new element called "proteins" to the `PPI_data` list. It should be a character vector with the names of all 14 proteins in alphabetical order. (Hint: you should use the names of one of the dimensions of `PPI_scores`.)
 ```{r Assignment.W4.2.e}
 # Write and execute your code here
 
@@ -249,7 +250,7 @@ Load the pheatmap package.
 
 #### b.
 (1 mark)
-Create a heat map of the list element `PPI_scores`. Assign the call to the `pheatmap()` function to a variable named "PPI_heatmap". It will still create a plot.
+Create a heat map of the list element `PPI_scores`. Assign the call to the `pheatmap()` function to a variable named "PPI_heatmap" (e.g.` PPI_heatmap <- pheatmap(YOUR CODE)`). It will still create a plot.
 ```{r}
 # Write and execute your code here
 
@@ -264,7 +265,7 @@ Create a heat map of the list element `PPI_scores`. Assign the call to the `phea
 (1 mark)
 Locate PDHA1 on the heat map and identify the proteins with which it definitely interacts (score of 1). Look back at the output from question 1.e. and 1.f.
 Which main compartment does the protein PDHA1 likely localize to? 
-Assign the name of one of the 5 main compartments to a variable named "PDHA1_main_compartment".
+Assign the name of the appropriate main compartment to a variable named "PDHA1_main_compartment".
 ```{r Assignment.W4.3.c}
 # Write and execute your code here
 
@@ -279,7 +280,7 @@ Assign the name of one of the 5 main compartments to a variable named "PDHA1_mai
 (1 mark)
 Locate SASS6 on the heat map and identify the proteins with which it definitely interacts (score of 1). Look back at the output from question 1.e. and 1.f. 
 Which main compartment does the protein SASS6 likely localize to? 
-Assign the name of one of the 5 main compartments to a variable named "SASS6_main_compartment".
+Assign the name of the appropriate main compartment to a variable named "SASS6_main_compartment".
 ```{r Assignment.W4.3.d}
 # Write and execute your code here
 

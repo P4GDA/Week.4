@@ -9,12 +9,13 @@ knitr::opts_chunk$set(echo = TRUE, error = TRUE, warning = TRUE)
 library(ottr)
 library(testthat)
 ```
+**Run the above block to load required packages**
 
 ---
 
 At the end of this tutorial you should be able to:
 
-* Create list with or without names
+* Create a list with or without names
 * Add names to a list
 * Index a list with positional and name indices
 * Index elements in data structures within a list
@@ -28,7 +29,7 @@ At the end of this tutorial you should be able to:
 
 You are studying a group of patients with breast cancer. In this tutorial will we create a list to hold all of the information about the study.
 
-Mutations in 4 genes commonly associated with breast cancer are being examined: BRCA1, BRCA2, PTEN, TP53. Create a character vector called "genes" to hold the names of the 4 genes in the order written.
+Mutations in 4 genes commonly associated with breast cancer are being examined: BRCA1, BRCA2, PTEN, TP53. Create a character vector called "genes" to hold the names of the 4 genes in the given order.
 ```{r}
 # Write and execute your code here
 

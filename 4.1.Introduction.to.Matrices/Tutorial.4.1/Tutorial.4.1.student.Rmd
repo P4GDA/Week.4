@@ -9,6 +9,7 @@ knitr::opts_chunk$set(echo = TRUE, error = TRUE, warning = TRUE)
 library(ottr)
 library(testthat)
 ```
+**Run the above block to load required packages**
 
 ---
 
@@ -51,13 +52,13 @@ Create a matrix containing the numbers 1 to 15 in 3 rows, such that the rightmos
 
 For the rest of this tutorial we will focus on data for the frequency of single nucleotide polymorphisms (SNPs) in different populations. SNP frequencies from the 1000 Genomes Project are sourced from dbSNP (https://www.ncbi.nlm.nih.gov/snp/).
 
-We will start by looking a few randomly chosen SNPs across 4 populations:
+We will start by looking at a few randomly chosen SNPs across 4 populations:
 - African (AFR)
 - East Asian (EA)
 - European (EUR)
 - South Asian (SA)
 
-SNPs have ids in the form "rsXXXX" where the Xs are a number. Here we will look at the SNPs: rs671, rs4680, and rs6265.
+SNPs have ids in the form "rsXXXX" where the Xs are an ID number. Here we will look at the SNPs: rs671, rs4680, and rs6265.
 
 These are the frequencies of the *alternative allele* in each of the 4 populations:
 
@@ -68,7 +69,7 @@ These are the frequencies of the *alternative allele* in each of the 4 populatio
 | EUR | 0.00  | 0.50   | 0.20   |
 | SA  | 0.00  | 0.44   | 0.20   |
 
-The following vector contains the value in the table above, going from left to right along each row in the table.
+The following vector contains the values in the table above, going from left to right along each row in the table.
 
 ```{r}
 SNP_frequencies <- c(0.00, 0.28, 0.01, 0.17, 0.28, 0.49, 0.00, 0.50, 0.20, 0.00, 0.44, 0.20)
@@ -130,7 +131,7 @@ Using positional indexing, assign the 2nd row in `SNPs` to a variable named "SNP
 ```
 **Check your answer by running the above block** 
 
-Using named indexing, assign the alternative allele frequency for rs671 and rs6265 in the EA and EUR populations to a variable named "SNPs_subset".
+Using named indexing, assign the alternate allele frequencies for rs671 and rs6265 in the EA and EUR populations to a variable named "SNPs_subset".
 ```{r}
 
 ```
