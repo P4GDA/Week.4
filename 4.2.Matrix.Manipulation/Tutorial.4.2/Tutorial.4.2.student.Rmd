@@ -58,6 +58,7 @@ SNPs
 ```
 
 Write a logical expression to answer the question: Which populations have an alternate allele frequency greater than 0 for rs9361? Assign the output logical vector to a variable named "rs9361_present".
+
 ```{r}
 # Write and execute your code here
 
@@ -69,6 +70,7 @@ Write a logical expression to answer the question: Which populations have an alt
 **Check your answer by running the above block** 
 
 Use the logical expression written above to output all of the allele frequencies for the population(s) with an alternate allele frequency greater than 0 for rs9361. Assign the output to a variable named "rs9361_present_allele_freqs".
+
 ```{r}
 # Write and execute your code here
 
@@ -80,6 +82,7 @@ Use the logical expression written above to output all of the allele frequencies
 **Check your answer by running the above block** 
 
 Write a logical expression to answer the question: Which SNPs have an alternate allele frequency greater than 0.05 in the South Asian population? Assign the resulting logical vector to a variable named "SAS_SNPs_present".
+
 ```{r}
 # Write and execute your code here
 
@@ -91,6 +94,7 @@ Write a logical expression to answer the question: Which SNPs have an alternate 
 **Check your answer by running the above block** 
 
 Use the logical expression written above to output, for all populations, the allele frequencies of only the SNPs which have an alternate allele frequency greater than 0.05 in the South Asian population. Save the results to a variable called "SAS_SNPs_present_allele_freqs".
+
 ```{r}
 # Write and execute your code here
 
@@ -102,6 +106,7 @@ Use the logical expression written above to output, for all populations, the all
 **Check your answer by running the above block** 
 
 Output the allele frequencies for: all populations that contain an R, and all SNPs that contain a 2 in the ID. Assign the output matrix to a variable named "pop_R_rsID_2".
+
 ```{r}
 # Write and execute your code here
 
@@ -119,6 +124,7 @@ Output the allele frequencies for: all populations that contain an R, and all SN
 ---
 
 Use a matrix-specific function to output the mean alternate allele frequency for each SNP. Assign the output to variable named "mean_SNP_AA".
+
 ```{r}
 # Write and execute your code here
 
@@ -129,7 +135,8 @@ Use a matrix-specific function to output the mean alternate allele frequency for
 ```
 **Check your answer by running the above block** 
 
-Use the `summary()` function to get a summary of the alternate allele frequencies for each population. Assign the output to a variable named "SNP_summaries". (Hint: You will need to nest another function inside of the `summary()` function.)
+Use the `summary()` function to get a summary of the alternate allele frequencies for each population. Assign the output to a variable named "SNP_summaries". Hint: You will need to nest another function inside of the `summary()` function.
+
 ```{r}
 # Write and execute your code here
 
@@ -141,6 +148,7 @@ Use the `summary()` function to get a summary of the alternate allele frequencie
 **Check your answer by running the above block** 
 
 Load the pheatmap package (it should already be installed).
+
 ```{r}
 # Write and execute your code here
 
@@ -152,6 +160,7 @@ Load the pheatmap package (it should already be installed).
 **Check your answer by running the above block** 
 
 Create a heat map of alternate allele frequencies. Assign the call to the `pheatmap()` function to a variable named "SNP_heatmap" (e.g.` SNP_heatmap <- pheatmap(YOUR CODE)`). It will still create a plot.
+
 ```{r}
 # Write and execute your code here
 
@@ -169,6 +178,7 @@ Are there any SNPs that are uniquely absent in one population?
 Are there are SNPs that are only found in one population?
 
 Create a matrix of the correlations between each *population* based on the alternate allele frequencies. Call it "SNP_population_correlations".
+
 ```{r}
 # Write and execute your code here
 
@@ -180,6 +190,7 @@ Create a matrix of the correlations between each *population* based on the alter
 **Check your answer by running the above block** 
 
 Create a heat map of `SNP_population_correlations`. Assign the call to the `pheatmap()` function to a variable named "population_heatmap". It will still create a plot.
+
 ```{r}
 # Write and execute your code here
 

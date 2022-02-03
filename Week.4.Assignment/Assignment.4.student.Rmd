@@ -68,6 +68,7 @@ Each of these proteins is localized to a specific cellular compartment. The tabl
 #### a. 
 (3 marks)
 Create a character matrix called "cellular_localization" with 12 rows and 2 columns. Row names should be the protein names, and the two columns should be named "compartment" and "subcompartment". Ensure you copy the names of the proteins and column names exactly. You can create the matrix with any method.
+
 ```{r Assignment.W4.1.a}
 # Write and execute your code here
 
@@ -86,6 +87,7 @@ Two proteins were not included in the above matrix as they have an unknown cellu
 | ------- | ------------ | -------------- |
 | SASS6   | ?            | ?              |
 | PDHA1   | ?            | ?              |
+
 ```{r Assignment.W4.1.b}
 # Write and execute your code here
 
@@ -99,6 +101,7 @@ Two proteins were not included in the above matrix as they have an unknown cellu
 #### c.
 (1 mark) 
 Use **named** indexing to output the subcompartment for the protein PRPF8. Assign the value to a variable named "PRPF8_subcompartment".
+
 ```{r Assignment.W4.1.c}
 # Write and execute your code here
 
@@ -112,6 +115,7 @@ Use **named** indexing to output the subcompartment for the protein PRPF8. Assig
 #### d.
 (1 mark)
 Use **positional** indexing to output the main compartment for all proteins. Assign the output vector to a variable named "all_main_compartments".
+
 ```{r Assignment.W4.1.d}
 # Write and execute your code here
 
@@ -125,6 +129,7 @@ Use **positional** indexing to output the main compartment for all proteins. Ass
 #### e.
 (1 mark)
 Use logical indexing to output all of the rows (proteins) in `cellular_localization` where the value for the main compartment is equal to "mitochondria". Assign the output matrix to a variable named "mitochondrial_proteins".
+
 ```{r Assignment.W4.1.e}
 # Write and execute your code here
 
@@ -138,6 +143,7 @@ Use logical indexing to output all of the rows (proteins) in `cellular_localizat
 #### f.
 (1 mark)
 Use logical indexing to output all of the rows (proteins) in `cellular_localization` where the value for the main compartment is equal to "centrosome". Assign the output matrix to a variable named "centrosome_proteins".
+
 ```{r Assignment.W4.1.f}
 # Write and execute your code here
 
@@ -155,12 +161,12 @@ Use logical indexing to output all of the rows (proteins) in `cellular_localizat
 #### a.
 (3 marks)
 Create a list called "PPI_data" with the following elements in the order they are listed. Choose the appropriate data type and structure for each. The final two are the matrices already created in the assignment. Do not include names for any of the list elements.
-
 - "HEK293"
 - "Go, et al. A proximity-dependent biotinylation map of a human cell. Nature (2021)"
 - 14
 - `cellular_localization`
 - `PPI_scores`
+
 ```{r Assignment.W4.2.a}
 # Write and execute your code here
 
@@ -174,6 +180,7 @@ Create a list called "PPI_data" with the following elements in the order they ar
 #### b.
 (1 mark)
 Use **positional** indexing to output the VALUE of the second element in `PPI_data`. Assign the output value to a variable named "PPI_data_element_2".
+
 ```{r Assignment.W4.2.b}
 # Write and execute your code here
 
@@ -187,12 +194,12 @@ Use **positional** indexing to output the VALUE of the second element in `PPI_da
 #### c.
 (1 mark)
 Name the list elements in `PPI_data`. Use the names in the order specified below. 
-
 - "cell_line"
 - "reference"
 - "num_proteins"
 - "cellular_localization"
 - "PPI_scores"
+
 ```{r Assignment.W4.2.c}
 # Write and execute your code here
 
@@ -206,6 +213,7 @@ Name the list elements in `PPI_data`. Use the names in the order specified below
 #### d.
 (1 mark)
 Use **named** indexing to output the full cellular localization information for the protein AARS2 (both the main compartment and subcompartment) from `PPI_data`. Assign the output vector to a variable named "AARS2_localization".
+
 ```{r Assignment.W4.2.d}
 # Write and execute your code here
 
@@ -218,7 +226,8 @@ Use **named** indexing to output the full cellular localization information for 
 
 #### e.
 (1 mark)
-Add a new element called "proteins" to the `PPI_data` list. It should be a character vector with the names of all 14 proteins in alphabetical order. (Hint: you should use the names of one of the dimensions of `PPI_scores`.)
+Add a new element called "proteins" to the `PPI_data` list. It should be a character vector with the names of all 14 proteins in alphabetical order. Hint: you should use the names of one of the dimensions of `PPI_scores`.
+
 ```{r Assignment.W4.2.e}
 # Write and execute your code here
 
@@ -238,6 +247,7 @@ The cellular localization for two of the proteins (SASS6 and PDHA1) were not pro
 #### a.
 (1 mark)
 Load the pheatmap package.
+
 ```{r Assignment.W4.3.a}
 # Write and execute your code here
 
@@ -251,6 +261,7 @@ Load the pheatmap package.
 #### b.
 (1 mark)
 Create a heat map of the list element `PPI_scores`. Assign the call to the `pheatmap()` function to a variable named "PPI_heatmap" (e.g.` PPI_heatmap <- pheatmap(YOUR CODE)`). It will still create a plot.
+
 ```{r}
 # Write and execute your code here
 
@@ -266,6 +277,7 @@ Create a heat map of the list element `PPI_scores`. Assign the call to the `phea
 Locate PDHA1 on the heat map and identify the proteins with which it definitely interacts (score of 1). Look back at the output from question 1.e. and 1.f.
 Which main compartment does the protein PDHA1 likely localize to? 
 Assign the name of the appropriate main compartment to a variable named "PDHA1_main_compartment".
+
 ```{r Assignment.W4.3.c}
 # Write and execute your code here
 
@@ -281,6 +293,7 @@ Assign the name of the appropriate main compartment to a variable named "PDHA1_m
 Locate SASS6 on the heat map and identify the proteins with which it definitely interacts (score of 1). Look back at the output from question 1.e. and 1.f. 
 Which main compartment does the protein SASS6 likely localize to? 
 Assign the name of the appropriate main compartment to a variable named "SASS6_main_compartment".
+
 ```{r Assignment.W4.3.d}
 # Write and execute your code here
 

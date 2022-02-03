@@ -30,6 +30,7 @@ At the end of this tutorial you should be able to:
 You are studying a group of patients with breast cancer. In this tutorial will we create a list to hold all of the information about the study.
 
 Mutations in 4 genes commonly associated with breast cancer are being examined: BRCA1, BRCA2, PTEN, TP53. Create a character vector called "genes" to hold the names of the 4 genes in the given order.
+
 ```{r}
 # Write and execute your code here
 
@@ -47,6 +48,7 @@ Mount Horn Hospital         MHH     5
 Bayside Hospital            BSH     1
 
 Create a list called "hospitals". The elements should be the number of patients involved from each hospital. The elements should be named using the hospitals' three letter identifiers. Add names to elements during list creation.
+
 ```{r}
 # Write and execute your code here
 
@@ -58,12 +60,12 @@ Create a list called "hospitals". The elements should be the number of patients 
 **Check your answer by running the above block** 
 
 Without adding names, create a list containing (in order):
-
 - the total number of patients involved in the study: 9
 - the `genes` vector
 - the `hospitals` list
 
 Call the list "breast_cancer_data".
+
 ```{r}
 # Write and execute your code here
 
@@ -75,6 +77,7 @@ Call the list "breast_cancer_data".
 **Check your answer by running the above block** 
 
 Use positional indexing to assign the names of the 4 genes being used to a variable named "indexed_genes".
+
 ```{r}
 # Write and execute your code here
 
@@ -86,6 +89,7 @@ Use positional indexing to assign the names of the 4 genes being used to a varia
 **Check your answer by running the above block** 
 
 Add the following names to the list elements: "total_patients", "genes", "hospital_pts"
+
 ```{r}
 # Write and execute your code here
 
@@ -97,6 +101,7 @@ Add the following names to the list elements: "total_patients", "genes", "hospit
 **Check your answer by running the above block** 
 
 Use named indexing to assign the total number of patients involved in the study to a variable named "num_patients".
+
 ```{r}
 # Write and execute your code here
 
@@ -131,6 +136,7 @@ patient_mutations
 ```
 
 Add this matrix to the `breast_cancer_data` list, name the element "pt_mutations".
+
 ```{r}
 # Write and execute your code here
 
@@ -142,6 +148,7 @@ Add this matrix to the `breast_cancer_data` list, name the element "pt_mutations
 **Check your answer by running the above block** 
 
 Use named indexing to assign the number of patients involved in the study at Greenview General Hospital to a variable named "GGH_num_patients".
+
 ```{r}
 # Write and execute your code here
 
@@ -153,6 +160,7 @@ Use named indexing to assign the number of patients involved in the study at Gre
 **Check your answer by running the above block** 
 
 Assign the patient mutation information for patient number 5 to a variable named "pt_5_mutations".
+
 ```{r}
 # Write and execute your code here
 
@@ -167,6 +175,7 @@ A new patient from Bayside Hospital has joined the study. The patient has a muta
 
 Update the list to include this patient. You will need to:
 - add the patient to the matrix at "pt_mutations" (Hint: this will be pt_10)
+
 ```{r}
 # Write and execute your code here
 
@@ -178,6 +187,7 @@ Update the list to include this patient. You will need to:
 **Check your answer by running the above block** 
 
 - update the total number of patients involved in the study
+
 ```{r}
 # Write and execute your code here
 
@@ -189,6 +199,7 @@ Update the list to include this patient. You will need to:
 **Check your answer by running the above block** 
 
 - update the number of patients from Bayside Hospital
+
 ```{r}
 # Write and execute your code here
 

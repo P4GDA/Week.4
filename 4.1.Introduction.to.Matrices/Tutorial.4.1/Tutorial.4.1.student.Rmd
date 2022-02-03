@@ -28,7 +28,8 @@ At the end of this tutorial you should be able to:
 
 ---
 
-Create a matrix containing the numbers 1 to 15 in 3 rows, such that the first row contains the numbers: 1, 4, 7, 10, and 13. Assign it to a variable named "matrix_1"
+Create a matrix containing the numbers 1 to 15 in 3 rows, such that the first row contains the numbers: 1, 4, 7, 10, and 13. Assign it to a variable named "matrix_1".
+
 ```{r}
 
 ```
@@ -38,7 +39,8 @@ Create a matrix containing the numbers 1 to 15 in 3 rows, such that the first ro
 ```
 **Check your answer by running the above block** 
 
-Create a matrix containing the numbers 1 to 15 in 3 rows, such that the rightmost number in the first row is 5. Assign it to a variable named "matrix_2"
+Create a matrix containing the numbers 1 to 15 in 3 rows, such that the rightmost number in the first row is 5. Assign it to a variable named "matrix_2".
+
 ```{r}
 
 ```
@@ -76,6 +78,7 @@ SNP_frequencies <- c(0.00, 0.28, 0.01, 0.17, 0.28, 0.49, 0.00, 0.50, 0.20, 0.00,
 ```
 
 Use the `matrix()` function to create a matrix that matches the table above using the `SNP_frequencies` vector. Assign the matrix to a variable named "SNPs". Verify that the order of the numbers in your matrix matches the table!
+
 ```{r}
 
 ```
@@ -86,6 +89,7 @@ Use the `matrix()` function to create a matrix that matches the table above usin
 **Check your answer by running the above block** 
 
 Add row names to `SNPs`.
+
 ```{r}
 
 ```
@@ -96,6 +100,7 @@ Add row names to `SNPs`.
 **Check your answer by running the above block** 
 
 Add column names to `SNPs`.
+
 ```{r}
 
 ```
@@ -112,6 +117,7 @@ Add column names to `SNPs`.
 ---
 
 Using positional indexing, assign the value in the 3rd row, 2nd column in `SNPs` to a variable named "SNP_3_2".
+
 ```{r}
 
 ```
@@ -122,6 +128,7 @@ Using positional indexing, assign the value in the 3rd row, 2nd column in `SNPs`
 **Check your answer by running the above block** 
 
 Using positional indexing, assign the 2nd row in `SNPs` to a variable named "SNPs_row_2".
+
 ```{r}
 
 ```
@@ -132,6 +139,7 @@ Using positional indexing, assign the 2nd row in `SNPs` to a variable named "SNP
 **Check your answer by running the above block** 
 
 Using named indexing, assign the alternate allele frequencies for rs671 and rs6265 in the EA and EUR populations to a variable named "SNPs_subset".
+
 ```{r}
 
 ```
@@ -145,7 +153,9 @@ Using individual matrix element indices, index:
 - the value in the 2nd row, 1st column
 - the value in the 3rd row, 2nd column
 - the value in the 1st row, 3rd column
+
 Assign the output vector to a variable named "SNP_indexed_elements".
+
 ```{r}
 
 ```
@@ -169,6 +179,7 @@ Add a new column of alternative allele frequencies for the SNP rs7412 to the `SN
 | EA  | 0.10   |
 | EUR | 0.06   |
 | SA  | 0.04   |
+
 ```{r}
 
 ```
@@ -183,6 +194,7 @@ Add a new row for the population: American (AMR)
 |     | rs671 | rs4680 | rs6265 | rs7412 |
 | --- | ----- | ------ | ------ | ------ |
 | AMR | 0.00  | 0.32   | 0.15   | 0.05   |
+
 ```{r}
 
 ```
@@ -193,6 +205,7 @@ Add a new row for the population: American (AMR)
 **Check your answer by running the above block** 
 
 Update the row names so that all the names are three letters long by changing "EA" to "EAS" and "SA" to "SAS".
+
 ```{r}
 
 ```
