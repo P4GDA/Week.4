@@ -1,0 +1,525 @@
+---
+title: "4.1 Introduction to Matrices"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, error = TRUE, warning = TRUE)
+```
+
+---
+
+## 4.1.1: Matrix Creation
+
+---
+
+### 2-Dimensional Data & Matrices
+
+Last week we worked with two vectors that held data for pea plant growth in two different types of soil, in three different levels of light exposure:
+
+```{r}
+soil_A_light <- c("low"=5.9, "med"=7.2, "high"=6.8)
+soil_B_light <- c("low"=3.6, "med"=4.2, "high"=3.9)
+soil_A_light
+soil_B_light
+```
+
+These data could easily put into a table with two rows and three columns: one row for each soil type and one column for each level of light exposure, as this is the same across both vectors.
+
+Plant Heights (cm)
+
+|        | low | med | high |
+| ------ | --- | --- | ---- |
+| soil A | 5.9 | 7.2 | 6.8  |
+| soil B | 3.6 | 4.2 | 3.9  |
+
+*Matrices* are a type of data structure in R for storing data arranged in rows and columns. Like vectors, they can only contain one data type. Whereas vectors are like a single row in a table, matrices are 2-dimensional and thus are like a table with multiple rows and columns.
+
+There are two types of 2D data that you will encounter in data analysis:
+- *Non-symmetric 2D data*
+- *Symmetric 2D data*
+
+In non-symmetric 2D data, rows are samples or individuals and columns are measurements or features for each sample or individual. 
+
+For example, if we were storing blood panel data for a set of patients:
+
+|           | Age | Hemoglobin | RBC |
+| --------- | --- | ---------- | --- |
+| Patient A | 52  | 12.3       | 5.2 |
+| Patient B | 29  | 15.7       | 5.8 |
+|    ...    | ... |    ...     | ... |
+| Patient Z | 81  | 14.9       | 4.3 |
+
+Rows are individual patients, and columns are features (age) or measurements (hemoglobin level and red blood cell counts).
+
+In symmetric 2D data, rows and columns are samples or individuals. The same samples and individuals are present in the same order across rows and columns. The values in the table represent relationships between the samples or individuals. 
+
+For example, if we were storing protein-protein interaction data for a set of N proteins ( where 1 = interaction, 0 = no interaction):
+
+|     | P1  | P2  | ... | PN  |
+| P1  | 1   | 0   | ... | 0   |
+| P2  | 0   | 1   | ... | 1   |
+| ... | ... | ... | ... | ... |
+| PN  | 0   | 1   | ... | 1   |
+
+In a symmetric matrix, the value at row x, column y is the same as the value at column y, row x. For example, P2 and PN interact, so there is a `1` at row P2, column PN and there is a `1` at row PN, column P2.
+
+---
+
+### The matrix() Function
+
+Matrices can be created with the `matrix()` function.
+
+Description: creates a matrix from the given set of values
+Usage: `matrix(data = NA, nrow = 1, ncol = 1, byrow = FALSE, dimnames = NULL)`
+Arguments: `data` - vector of values
+           `nrow` - number of rows
+           `ncol` - number of columns
+           `byrow` - fill matrix across rows
+           `dimnames` - ignore for now
+Return Value: matrix
+
+The following non-symmetric patient blood panel data can be stored as a matrix.
+
+|           | Age | HGB  | RBC | WBC |
+| --------- | --- | ---- | --- | --- |
+| Patient A | 52  | 12.3 | 5.2 | 6.4 |
+| Patient B | 29  | 15.7 | 5.8 | 9.1 |
+| Patient C | 81  | 14.9 | 4.3 | 5.6 |
+
+HGB - hemoglobin (g/dL)
+RBC - red blood cell count (millions of cells/μL)
+WBC - white blood cell count (thousands of cells/μL)
+
+First we will put all the data into a single vector. The values have been added in column order from left to right, going down the columns:
+
+```{r}
+pt_data <- c(52, 29, 81, # Age
+             12.3, 15.7, 14.9, # HGB
+             5.2, 5.8, 4.3, # RBC
+             6.4, 9.1, 5.6) # WBC
+```
+
+Now we will create a matrix called "pt_blood" using only the data argument:
+
+```{r}
+pt_blood <- matrix(pt_data)
+pt_blood
+```
+
+The output matrix has a single column, and each row contains one element. When we look back at the defaults in the matrix function, we can see that by default there is one row and one column. But why did it not create a matrix with one row instead?
+
+    matrix(data = NA, nrow = 1, ncol = 1, byrow = FALSE, dimnames = NULL)
+    
+The key argument is the `byrow` argument which is set to `FALSE` by default. By default, a matrix is filled by adding each element in the vector column-wise. In other words, there is one column and the first element in the vector becomes the first row in the first column, the second element becomes the second row in the first column, etc.
+
+We can specify the number of columns we want in our matrix using the `ncol` argument. Our patient blood panel table has four columns, so let's assign the number `4` to `ncol`:
+
+```{r}
+pt_blood <- matrix(pt_data, ncol=4)
+pt_blood
+```
+
+We can see that now the matrix has three rows and four columns like our table above. How did R determine the number of rows to put in the matrix? If you only provide a number to `ncol`, R will automatically determine the number of rows: `nrow` = number of elements / `ncol`.
+
+Here we have 12 elements, and four divides perfectly into 12. What if we instead chose five columns?
+
+```{r}
+pt_blood <- matrix(pt_data, ncol=5)
+pt_blood
+```
+
+We get a warning telling us that five is not a multiple of 12. R still created a five-column matrix, but it "recycled" elements from the beginning to add an extra column and fill in the remaining spots in the matrix.
+
+Instead of specifying the number of columns, we can specify the number of rows:
+
+```{r}
+pt_blood <- matrix(pt_data, nrow=3)
+pt_blood
+```
+
+This creates the exact same matrix that we made when we specified `ncol=4` because R determines the number of columns by dividing the number of elements by `nrow`.
+
+As we noted earlier, matrices are filled "column-wise". What would happen if we stored our data in a vector by adding elements going across the rows instead of down the columns and created a matrix? Here is the data table again:
+
+|           | Age | HGB  | RBC | WBC |
+| --------- | --- | ---- | --- | --- |
+| Patient A | 52  | 12.3 | 5.2 | 6.4 |
+| Patient B | 29  | 15.7 | 5.8 | 9.1 |
+| Patient C | 81  | 14.9 | 4.3 | 5.6 |
+
+```{r}
+pt_data <- c(52, 12.3, 5.2, 6.4, # A              
+             29, 15.7, 5.8, 9.1, # B 
+             81, 14.9, 4.3, 5.6) # C
+pt_blood <- matrix(pt_data, ncol=4)
+pt_blood
+```
+
+Looking at the first row of the table of data and the first row of the matrix we can see that they do not match. The values of the first row in the table are in column one and the top of column two. This is because the matrix was filled by column by default.
+
+If you enter your data row-wise into the vector you are using to create a matrix, you must set the `byrow` argument in the `matrix()` function to `TRUE`:
+
+```{r}
+pt_blood <- matrix(pt_data, ncol=4,  
+                   byrow=TRUE)
+pt_blood
+```
+
+Now the resulting matrix matches the table. Keep this in mind when creating matrices.
+
+---
+
+### Row & Column Names
+
+In the same way that vector elements can have names, matrices can have row and column names.
+
+Row names are viewed, added, and modified using the function `rownames()`. 
+Column names are viewed, added, and modified using the function `colnames()`. 
+
+Currently our matrix does not have row or column names:
+
+```{r}
+rownames(pt_blood)
+colnames(pt_blood)
+```
+
+We can add row names to label the patients. The vector of names should be the same length as the number of rows:
+    
+    rownames(matrix_name) <- vector_name
+
+```{r}
+rownames(pt_blood) <- c("pt_A", "pt_B",  "pt_C")
+pt_blood
+```
+
+We can add column names to label each of the measurements. The vector of names should be the same length as the number of columns:
+    
+    colnames(matrix_name) <- vector_name
+
+```{r}
+colnames(pt_blood) <- c("Age", "HGB",  
+                        "RBC", "WBC")
+pt_blood
+```
+
+---
+
+### Row & Column Binding
+
+Another way to create a matrix is by binding vectors together.
+
+For example, we could create a vector for each patient that holds the patient's measurements (in the same order in each vector), and then use the function `rbind()` which joins the vectors together as rows in a matrix. The vectors should all be of the same length:
+
+    rbind(vector1, vector2, ...)
+
+```{r}
+pt_A <- c(52, 12.3, 5.2, 6.4)          
+pt_B <- c(29, 15.7, 5.8, 9.1) 
+pt_C <- c(81, 14.9, 4.3, 5.6)
+pt_blood <- rbind(pt_A, pt_B, pt_C)
+pt_blood
+```
+
+The resulting matrix will automatically have row names, which are the names of each vector.
+
+Similarly, the `cbind()` function can be used to join vectors together as columns in a matrix. Again, the vectors should all be of the same length:
+
+```{r}
+Age <- c(52, 29, 81)
+HGB <- c(12.3, 15.7, 14.9) 
+RBC <- c(5.2, 5.8, 4.3)
+WBC <- c(6.4, 9.1, 5.6) 
+pt_blood <- cbind(Age, HGB, RBC, WBC)
+pt_blood
+```
+
+This time the matrix has column names matching the names of the vectors used to create the matrix.
+
+---
+
+## 4.1.2 Basic Matrix Indexing
+
+---
+
+### Positional Indices of a Matrix
+
+The number of rows and columns in a matrix (the dimensions) can be retrieved using the functions `nrow()` and `ncol()`:
+
+```{r}
+nrow(pt_blood)
+ncol(pt_blood)
+```
+
+Alternatively, the function `dim()` returns a vector of the number of rows followed by the number of columns:
+
+```{r}
+dim(pt_blood)
+```
+
+Matrix dimensions and value positions are always referred in the order: row, column.
+
+Let's look at the `pt_blood` matrix without any row or column names:
+
+```{r}
+pt_data <- c(52, 12.3, 5.2, 6.4, # A              
+             29, 15.7, 5.8, 9.1, # B 
+             81, 14.9, 4.3, 5.6) # C
+pt_blood <- matrix(pt_data, ncol=4, byrow=TRUE)
+pt_blood
+```
+
+To the left of each row we can see a number, X, in square brackets **followed** by a comma: `[X,]`. This is the **row index**.
+
+We can also see at the top of each column a number, X, in square brackets **preceded** by a comma: `[,X]`. This is the **column index**.
+
+Individual elements in a matrix are indexed by their row and column index: `[row,column]`. The following 3 x 4 table is filled with the *row, column index* for each element if the table were a matrix.
+
+|      | [,1]  | [,2]  | [,3]  | [,4]  |
+| [1,] | [1,1] | [1,2] | [1,3] | [1,4] |
+| [2,] | [2,1] | [2,2] | [2,3] | [2,4] |
+| [3,] | [3,1] | [3,2] | [3,3] | [3,4] |
+
+To index an individual element in a matrix, we use the following syntax:
+
+        matrix_name[row_index,column_index]
+
+For example, to get the element at the first row and column in `pt_blood`:
+
+```{r}
+pt_blood[1,1]
+```
+
+To get the element at row two, column three:
+
+```{r}
+pt_blood[2,3]
+```
+
+To index an entire row, you can use only the row index and put nothing for the column index (meaning you want to return all columns):
+
+        matrix_name[row_index,]
+        
+Return the third row:
+
+```{r}
+pt_blood[3,]
+```
+
+To index an entire column, you can put nothing for the row index (meaning you want to return all rows) and only use the column index:
+
+        matrix_name[,column_index]
+        
+Return the fourth column:
+
+```{r}
+pt_blood[,4]
+```
+
+You can access multiple rows or multiple columns by putting a vector of indices in place of the row or column index:
+
+        matrix_name[row_indices,]
+        matrix_name[,column_indices]
+
+Return the second to third row:
+
+```{r}
+pt_blood[2:3,]
+```
+
+Return the second and fourth columns:
+
+```{r}
+pt_blood[,c(2,4)]
+```
+
+Note that the matrices output in both of the above code chunks do not retain the indices of the original matrix. These are new matrices and therefore have row and column indices starting from one and increasing by one.
+
+You can also access one or more rows AND one or more columns:
+
+        matrix_name[row_indices,column_indices]
+        
+For example, to get the second and third rows and the second and fourth columns:
+
+```{r}
+pt_blood[2:3,c(2,4)]
+```
+
+Indexing can also be done by individual elements instead of getting specific rows and columns. Matrix elements are assigned column wise. 
+The following 3 x 4 table is filled with the *element index* for each element if the table were a matrix.
+
+|      | [,1] | [,2] | [,3] | [,4] |
+| [1,] | 1    | 4    | 7    | 10   |
+| [2,] | 2    | 5    | 8    | 11   |
+| [3,] | 3    | 6    | 9    | 12   |
+
+In this way we can index individual elements in different columns and rows without requiring that they share column and row indices:
+
+For example:
+```{r}
+pt_blood[c(1, 3, 7, 11)]
+```
+
+---
+
+### Named Indexing
+
+Let's recreate our matrix and give it both row and column names:
+
+```{r}
+Age <- c(52, 29, 81)
+HGB <- c(12.3, 15.7, 14.9) 
+RBC <- c(5.2, 5.8, 4.3)
+WBC <- c(6.4, 9.1, 5.6) 
+pt_blood <- cbind(Age, HGB, RBC, WBC)
+rownames(pt_blood) <- c("pt_A", "pt_B", "pt_C")
+pt_blood
+```
+
+If a matrix has row and column names it can also be indexed via these names: 
+
+        matrix_name[row_name,column_name]
+
+For example, to index an individual element:
+
+```{r}
+pt_blood["pt_A", "Age"]
+```
+
+Using vectors of row and column names, we can also index multiple rows and/or columns simultaneously:
+
+```{r}
+pt_blood[c("pt_A", "pt_B"),c("Age", "RBC")]
+```
+
+Positional and named indexing can be mixed. However, all row indices must be of the same index type and all column indices must be of the same index type:
+
+```{r}
+pt_blood[c("pt_A", "pt_B"), c(1, 3)]
+```
+
+---
+
+## 4.1.3 Matrix Modification
+
+---
+
+### Adding & Replacing Values
+
+We have data for a new patient:
+
+|           | Age | HGB  | RBC | WBC |
+| --------- | --- | ---- | --- | --- |
+| Paitent D | 37  | 14.3 | 4.9 | 7.2 |
+
+To add a new row to our matrix we can use the `rbind()` function:
+
+```{r}
+pt_blood <- rbind(pt_blood, "pt_D"=c(37, 14.3, 4.9, 7.2))
+pt_blood
+```
+
+The new vector can be created within the `rbind()` function as above:
+
+        rbind(matrix_name, row_name=vector1)
+        
+Or it can be created before hand:
+        
+        vector_name <- c(...)
+        rbind(matrix_name, vector_name)
+
+Similarly a new column can be added with the `cbind()` function using either method:
+
+        cbind(matrix_name, column_name=vector1)
+        
+        vector_name <- c(...)
+        cbind(matrix_name, vector_name)
+        
+Let's add a new measurement, BGL - blood glucose level (mg/dL):
+
+|           | BGL |
+| --------- | --- |
+| Patient A | 76  |
+| Patient B | 94  |
+| Patient C | 83  |
+| Patient D | 125 |
+
+```{r}
+BGL <- c(76, 94, 83, 125)
+pt_blood <- cbind(pt_blood, BGL)
+pt_blood
+```
+
+We can also replace an entire row in a matrix with a vector of the same length as the existing row (i.e., the vector length equals the number of columns):
+
+        matrix_name[row_name,] <- vector1
+
+Or an entire column with a vector of the same length as the existing column (i.e., the vector length equals the number of rows):
+
+        matrix_name[,column_name] <- vector1
+
+Patient B has updated data that we can incorporate into our matrix:
+
+|           | Age | HGB  | RBC | WBC | BGL |
+| --------- | --- | ---- | --- | --- | --- |
+| Patient B | 30  | 15.6 | 5.4 | 8.9 | 95  |
+
+```{r}
+pt_B <- c(30, 15.6, 5.4, 8.9, 95)
+pt_blood["pt_B", ] <- pt_B
+pt_blood
+```
+
+You can also replace a single value with either row/column indexing or with element indexing:
+
+        matrix_name[row_index, column_index] <- value
+        matrix_name[element_index] <- value
+        
+Patient C currently has a white blood cell count of 5.6, but it was entered wrong and should be corrected to 5.8 in our matrix: 
+
+```{r}
+pt_blood[3,4] <- 5.8
+pt_blood
+```
+
+---
+
+### Editing Row & Column Names
+
+To replace all row or column names we can assign a character vector of the correct length:
+
+        rownames(matrix_name) <- vector1
+        colnames(matrix_name) <- vector2
+
+If we wanted to update the row names to include the full word "patient" instead of the short form "pt" we could use the `gsub()` function to alter the current names:
+
+```{r}
+gsub("pt", "patient", rownames(pt_blood))
+```
+
+On it's own, the above code outputs the new names but does not update the names in the matrix. By assigning this code to `rownames(pt_blood)` we can make these changes to the matrix itself:
+
+```{r}
+rownames(pt_blood) <- gsub("pt", "patient", rownames(pt_blood))
+pt_blood
+```
+
+To replace the name of a single row or column, we can index the output of `rownames()` or `colnames()`, which is a vector, and assign a new character value to a particular position:
+
+        rownames(matrix_name)[index] <- "newname"
+        colnames(matrix_name)[index] <- "newname"
+        
+For example, if the name of the 5th column in `pt_blood` is "BGL":
+
+```{r}
+colnames(pt_blood)[5]
+```
+
+We can replace this with the name "BG":
+
+```{r}
+colnames(pt_blood)[5] <- "BG"
+pt_blood
+```
+
+---
