@@ -292,7 +292,11 @@ doctors
 
 ---
 
-### Using Lists in Bioinformatic Analysis
+## 4.3.3: Using Lists in Bioinformatic Analysis
+
+---
+
+### The strsplit() Function
 
 Some functions return lists. One example is the `strsplit()` function, which splits a character value into separate substrings (components of the original character value). How the character value is split is determined by the *delimiter*, which is a character(s) that denotes separate "chunks" of data. The result of splitting a character value on a delimiter is a vector containing shorter "chunks" of the original value, where each substring (chunk) is a separate element in the vector, and the delimiter is no longer present. The `strsplit()` function returns these vectors in a list.
 
@@ -323,6 +327,10 @@ strsplit(doctors_vector, ",")
 ```
 
 Now it returns a list of length 3, with a character vector at each element. Note that the same delimiter applies to all elements of the input vector.
+
+---
+
+### Calculating GC Content
 
 The `strsplit()` function can be very helpful when working with DNA, RNA, or amino acid sequences. If the `split` argument is set to an empty character value "", it will split the character values at each letter:
 
