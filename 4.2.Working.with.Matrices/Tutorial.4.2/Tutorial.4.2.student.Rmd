@@ -119,7 +119,7 @@ Output the allele frequencies for: all populations that contain an R, and all SN
 
 ---
 
-## 4.2.2: Matrix Functions
+## 4.2.2: Matrix Functions & 4.2.3: R Packages & Heat Maps
 
 ---
 
