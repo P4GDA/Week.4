@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE, error = TRUE, warning = TRUE)
 
 ---
 
-## 4.1.1: Matrix Creation
+## 4.1.1 Matrix Creation
 
 ---
 
@@ -24,7 +24,7 @@ soil_A_light
 soil_B_light
 ```
 
-These data could easily put into a table with two rows and three columns: one row for each soil type and one column for each level of light exposure, as this is the same across both vectors.
+These data could easily put into a table with two rows and three columns: one row for each soil type and one column for each level of light exposure, as this is the same across both vectors:
 
 Plant Heights (cm)
 
@@ -62,7 +62,7 @@ For example, if we were storing protein-protein interaction data for a set of N 
 | ... | ... | ... | ... | ... |
 | PN  | 0   | 1   | ... | 1   |
 
-In a symmetric matrix, the value at row x, column y is the same as the value at column y, row x. For example, P2 and PN interact, so there is a `1` at row P2, column PN and there is a `1` at row PN, column P2.
+In a symmetric matrix, the value at row x, column y is the same as the value at column y, row x. For example, P2 and PN interact, so there is a `1` at row P2, column PN, and there is also a `1` at row PN, column P2.
 
 ---
 
@@ -79,7 +79,7 @@ Arguments: `data` - vector of values
            `dimnames` - ignore for now
 Return Value: matrix
 
-The following non-symmetric patient blood panel data can be stored as a matrix.
+The following non-symmetric patient blood panel data can be stored as a matrix:
 
 |           | Age | HGB  | RBC | WBC |
 | --------- | --- | ---- | --- | --- |
@@ -87,9 +87,9 @@ The following non-symmetric patient blood panel data can be stored as a matrix.
 | Patient B | 29  | 15.7 | 5.8 | 9.1 |
 | Patient C | 81  | 14.9 | 4.3 | 5.6 |
 
-HGB - hemoglobin (g/dL)
-RBC - red blood cell count (millions of cells/μL)
-WBC - white blood cell count (thousands of cells/μL)
+- HGB: hemoglobin (g/dL)
+- RBC: red blood cell count (millions of cells/μL)
+- WBC: white blood cell count (thousands of cells/μL)
 
 First we will put all the data into a single vector. The values have been added in column order from left to right, going down the columns:
 
@@ -111,12 +111,12 @@ The output matrix has a single column, and each row contains one element. When w
 
     matrix(data = NA, nrow = 1, ncol = 1, byrow = FALSE, dimnames = NULL)
     
-The key argument is the `byrow` argument which is set to `FALSE` by default. By default, a matrix is filled by adding each element in the vector column-wise. In other words, there is one column and the first element in the vector becomes the first row in the first column, the second element becomes the second row in the first column, etc.
+The key argument is the `byrow` argument which is by default set to `FALSE`. By default, a matrix is filled by adding each element in the vector column-wise. In other words, there is one column and the first element in the vector becomes the first row in the first column, the second element becomes the second row in the first column, etc.
 
-We can specify the number of columns we want in our matrix using the `ncol` argument. Our patient blood panel table has four columns, so let's assign the number `4` to `ncol`:
+We can specify the number of columns we want in our matrix using the `ncol` argument. Our patient blood panel table has four columns, so let's assign the number 4 to `ncol`:
 
 ```{r}
-pt_blood <- matrix(pt_data, ncol=4)
+pt_blood <- matrix(pt_data, ncol = 4)
 pt_blood
 ```
 
@@ -125,7 +125,7 @@ We can see that now the matrix has three rows and four columns like our table ab
 Here we have 12 elements, and four divides perfectly into 12. What if we instead chose five columns?
 
 ```{r}
-pt_blood <- matrix(pt_data, ncol=5)
+pt_blood <- matrix(pt_data, ncol = 5)
 pt_blood
 ```
 
@@ -134,7 +134,7 @@ We get a warning telling us that five is not a multiple of 12. R still created a
 Instead of specifying the number of columns, we can specify the number of rows:
 
 ```{r}
-pt_blood <- matrix(pt_data, nrow=3)
+pt_blood <- matrix(pt_data, nrow = 3)
 pt_blood
 ```
 
@@ -152,17 +152,17 @@ As we noted earlier, matrices are filled "column-wise". What would happen if we 
 pt_data <- c(52, 12.3, 5.2, 6.4, # A              
              29, 15.7, 5.8, 9.1, # B 
              81, 14.9, 4.3, 5.6) # C
-pt_blood <- matrix(pt_data, ncol=4)
+pt_blood <- matrix(pt_data, ncol = 4)
 pt_blood
 ```
 
-Looking at the first row of the table of data and the first row of the matrix we can see that they do not match. The values of the first row in the table are in column one and the top of column two. This is because the matrix was filled by column by default.
+Looking at the first row of the table of data and the first row of the matrix we can see that they do not match. The values of the first row in the table are in column one and the top of column two. This is because the matrix was filled column-wise by default.
 
 If you enter your data row-wise into the vector you are using to create a matrix, you must set the `byrow` argument in the `matrix()` function to `TRUE`:
 
 ```{r}
-pt_blood <- matrix(pt_data, ncol=4,  
-                   byrow=TRUE)
+pt_blood <- matrix(pt_data, ncol = 4,  
+                   byrow= TRUE)
 pt_blood
 ```
 
@@ -186,20 +186,19 @@ colnames(pt_blood)
 
 We can add row names to label the patients. The vector of names should be the same length as the number of rows:
     
-    rownames(matrix_name) <- vector_name
+    rownames(matrix_name) <- vector_of_names
 
 ```{r}
-rownames(pt_blood) <- c("pt_A", "pt_B",  "pt_C")
+rownames(pt_blood) <- c("pt_A", "pt_B", "pt_C")
 pt_blood
 ```
 
 We can add column names to label each of the measurements. The vector of names should be the same length as the number of columns:
     
-    colnames(matrix_name) <- vector_name
+    colnames(matrix_name) <- vector_of_names
 
 ```{r}
-colnames(pt_blood) <- c("Age", "HGB",  
-                        "RBC", "WBC")
+colnames(pt_blood) <- c("Age", "HGB", "RBC", "WBC")
 pt_blood
 ```
 
@@ -221,7 +220,7 @@ pt_blood <- rbind(pt_A, pt_B, pt_C)
 pt_blood
 ```
 
-The resulting matrix will automatically have row names, which are the names of each vector.
+The resulting matrix will automatically have row names, which are the names of each vector used to create it.
 
 Similarly, the `cbind()` function can be used to join vectors together as columns in a matrix. Again, the vectors should all be of the same length:
 
@@ -251,7 +250,7 @@ nrow(pt_blood)
 ncol(pt_blood)
 ```
 
-Alternatively, the function `dim()` returns a vector of the number of rows followed by the number of columns:
+Alternatively, the function `dim()` returns a single vector of the number of rows followed by the number of columns:
 
 ```{r}
 dim(pt_blood)
@@ -265,15 +264,15 @@ Let's look at the `pt_blood` matrix without any row or column names:
 pt_data <- c(52, 12.3, 5.2, 6.4, # A              
              29, 15.7, 5.8, 9.1, # B 
              81, 14.9, 4.3, 5.6) # C
-pt_blood <- matrix(pt_data, ncol=4, byrow=TRUE)
+pt_blood <- matrix(pt_data, ncol = 4, byrow = TRUE)
 pt_blood
 ```
 
-To the left of each row we can see a number, X, in square brackets **followed** by a comma: `[X,]`. This is the **row index**.
+To the left of each row we can see a number, X, in square brackets *followed* by a comma: `[X,]`. This is the *row index*.
 
-We can also see at the top of each column a number, X, in square brackets **preceded** by a comma: `[,X]`. This is the **column index**.
+We can also see at the top of each column a number, X, in square brackets *preceded* by a comma: `[,X]`. This is the *column index*.
 
-Individual elements in a matrix are indexed by their row and column index: `[row,column]`. The following 3 x 4 table is filled with the *row, column index* for each element if the table were a matrix.
+Individual elements in a matrix are indexed by their row and column index: `[row,column]`. The following 3 x 4 table is filled with the *[row, column index]* for each element if the table were a matrix.
 
 |      | [,1]  | [,2]  | [,3]  | [,4]  |
 | [1,] | [1,1] | [1,2] | [1,3] | [1,4] |
@@ -287,13 +286,13 @@ To index an individual element in a matrix, we use the following syntax:
 For example, to get the element at the first row and column in `pt_blood`:
 
 ```{r}
-pt_blood[1,1]
+pt_blood[1, 1]
 ```
 
 To get the element at row two, column three:
 
 ```{r}
-pt_blood[2,3]
+pt_blood[2, 3]
 ```
 
 To index an entire row, you can use only the row index and put nothing for the column index (meaning you want to return all columns):
@@ -318,8 +317,8 @@ pt_blood[,4]
 
 You can access multiple rows or multiple columns by putting a vector of indices in place of the row or column index:
 
-        matrix_name[row_indices,]
-        matrix_name[,column_indices]
+        matrix_name[row_indices_vector,]
+        matrix_name[,column_indices_vector]
 
 Return the second to third row:
 
@@ -337,16 +336,18 @@ Note that the matrices output in both of the above code chunks do not retain the
 
 You can also access one or more rows AND one or more columns:
 
-        matrix_name[row_indices,column_indices]
+        matrix_name[row_indices_vector,column_indices_vector]
         
 For example, to get the second and third rows and the second and fourth columns:
 
 ```{r}
-pt_blood[2:3,c(2,4)]
+pt_blood[2:3, c(2, 4)]
 ```
 
+Note: spaces were placed after the commas in the above example to make it easier to see the components of the row and column indices. You can type the indices with our without spaces.
+
 Indexing can also be done by individual elements instead of getting specific rows and columns. Matrix elements are assigned column wise. 
-The following 3 x 4 table is filled with the *element index* for each element if the table were a matrix.
+The following 3 x 4 table is filled with the *element index* for each element if the table were a matrix:
 
 |      | [,1] | [,2] | [,3] | [,4] |
 | [1,] | 1    | 4    | 7    | 10   |
@@ -378,7 +379,7 @@ pt_blood
 
 If a matrix has row and column names it can also be indexed via these names: 
 
-        matrix_name[row_name,column_name]
+        matrix_name[row_name, column_name]
 
 For example, to index an individual element:
 
@@ -389,7 +390,7 @@ pt_blood["pt_A", "Age"]
 Using vectors of row and column names, we can also index multiple rows and/or columns simultaneously:
 
 ```{r}
-pt_blood[c("pt_A", "pt_B"),c("Age", "RBC")]
+pt_blood[c("pt_A", "pt_B"), c("Age", "RBC")]
 ```
 
 Positional and named indexing can be mixed. However, all row indices must be of the same index type and all column indices must be of the same index type:
@@ -415,22 +416,22 @@ We have data for a new patient:
 To add a new row to our matrix we can use the `rbind()` function:
 
 ```{r}
-pt_blood <- rbind(pt_blood, "pt_D"=c(37, 14.3, 4.9, 7.2))
+pt_blood <- rbind(pt_blood, "pt_D" = c(37, 14.3, 4.9, 7.2))
 pt_blood
 ```
 
 The new vector can be created within the `rbind()` function as above:
 
-        rbind(matrix_name, row_name=vector1)
+        rbind(matrix_name, row_name = vector1)
         
 Or it can be created before hand:
         
         vector_name <- c(...)
         rbind(matrix_name, vector_name)
 
-Similarly a new column can be added with the `cbind()` function using either method:
+Similarlym a new column can be added with the `cbind()` function using either method:
 
-        cbind(matrix_name, column_name=vector1)
+        cbind(matrix_name, column_name = vector1)
         
         vector_name <- c(...)
         cbind(matrix_name, vector_name)
@@ -452,11 +453,11 @@ pt_blood
 
 We can also replace an entire row in a matrix with a vector of the same length as the existing row (i.e., the vector length equals the number of columns):
 
-        matrix_name[row_name,] <- vector1
+        matrix_name[row_name, ] <- vector1
 
 Or an entire column with a vector of the same length as the existing column (i.e., the vector length equals the number of rows):
 
-        matrix_name[,column_name] <- vector1
+        matrix_name[ ,column_name] <- vector1
 
 Patient B has updated data that we can incorporate into our matrix:
 
@@ -478,7 +479,7 @@ You can also replace a single value with either row/column indexing or with elem
 Patient C currently has a white blood cell count of 5.6, but it was entered wrong and should be corrected to 5.8 in our matrix: 
 
 ```{r}
-pt_blood[3,4] <- 5.8
+pt_blood[3, 4] <- 5.8
 pt_blood
 ```
 

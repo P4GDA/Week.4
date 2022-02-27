@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE, error = TRUE, warning = TRUE)
 
 ---
 
-## 4.3.1: List Creation & Indexing
+## 4.3.1 List Creation & Indexing
 
 ---
 
@@ -37,7 +37,7 @@ Blood Tests:
 | 07/11/2019 | 13.4 | 5.3 | 6.8 | 82 |
 | 02/08/2020 | 13.5 | 5.2 | 6.6 | 79 |
 
-*Lists* are an R data structure that solves this problem. A list is a collection of elements of different data types and/or data structures.
+*Lists* are an R data structure that solves this problem. A list is a collection of elements that can be different data types and/or data structures.
 
 Lists are 1-dimensional like vectors, however each element in a list does not have to be a single value like a vector. 
 
@@ -65,7 +65,7 @@ Looking at the output we can see that there are four elements, and each element 
 
 ### List Indexing
 
-Lists are indexed using double square brackets.
+Lists are indexed using double square brackets:
     
     list_name[[index]]
     
@@ -120,7 +120,7 @@ Again, indexing with single square brackets will return a list of length 1:
 pt_info["insured"]
 ```
 
-Lists have a second option for named indexing. If you look at the output of `pt_info` above, you will see that each element, once named, is preceded by a dollar sign and the element name, for example `$insured`. Individual elements can be accessed with the following syntax:
+Lists have a second option for named indexing. If you look at the output of `pt_info["insured"]` above, you will see that each element, once named, is preceded by a dollar sign and the element name, for example `$insured`. Individual elements of a list can be accessed with the following syntax:
 
     list_name$element_name
     
@@ -165,12 +165,12 @@ blood_dim_names <- list(dates, measurements)
 blood_dim_names
 ```
 
-The variable `blood_dim_names` has a length of 2, where the first element is a vector of row names and the second element is a vector of column names. This list can now be used in the creation of the matrix `blood` to hold the blood measurement data:
+The variable `blood_dim_names` has a length of 2, where the first element is a vector of row names and the second element is a vector of column names. This list can now be used in the creation of a matrix named "blood" to hold the blood measurement data:
 
 ```{r}
 blood <- matrix(c(12.3, 13.4, 13.5, 5.2, 5.3, 5.2, 6.4, 6.8, 6.6, 76, 82, 79), 
-                nrow=3, 
-                dimnames=blood_dim_names)
+                nrow = 3, 
+                dimnames = blood_dim_names)
 blood
 ```
 
@@ -194,10 +194,10 @@ appt_is_checkup
 Now we can create another list to hold all of the patient information. Note that names can be assigned to list elements during creation, as we do here:
 
 ```{r}
-patient <- list("patient_info"=pt_info,  
-                "appointments"=appt_dates,                     
-                "checkup"=appt_is_checkup, 
-                "blood_tests"=blood)
+patient <- list("patient_info" = pt_info,  
+                "appointments" = appt_dates,                     
+                "checkup" = appt_is_checkup, 
+                "blood_tests" = blood)
 patient
 ```
 
@@ -207,7 +207,7 @@ The list `patient` we created contains:
 - a logical vector (with names)
 - a numeric matrix (with names)
 
-To access elements within `patient`, often chained indexing is required. For example, to access the sex of the patient we need to first access the list element `patient_info` and then access the element `sex` within that list. The indices can be chained together. First, we index `patient` with the `patient_info` index, then we index `patient_info` with the `sex` index:
+To access elements within the list `patient`, often chained indexing is required. For example, to access the sex of the patient we need to first access the list element `patient_info` and then access the element `sex` within that list. The indices can be chained together. First, we index `patient` with the `patient_info` index, then we index `patient_info` with the `sex` index:
 
 ```{r}
 patient$patient_info$sex
@@ -242,14 +242,14 @@ Let's create a matrix to hold this information:
 
 ```{r}
 referral_names <- list(c("d.27.03.2020", "d.02.08.2020"),
-                  c("Doctor", "Specialty", "Reason"))
+                       c("Doctor", "Specialty", "Reason"))
 referral_matrix <- matrix(c("Jay, J.", "Chen, D.", "ENT", "Cardiology", 
-                "Tinnitus", "Heart palpitations"), 
-              nrow=2, dimnames = referral_names)
+                            "Tinnitus", "Heart palpitations"), 
+                          nrow = 2, dimnames = referral_names)
 referral_matrix
 ```
 
-We can add this new matrix to the `patient` list by assigning it to a named list element that does not yet exist. There are two options for this as there are two ways to access named list elements:
+We can add this new matrix to the `patient` list by assigning it to a named list element that does not yet exist. There are two options for this, as there are two ways to access named list elements:
 
         list_name$new_name <- new_element
         list_name[["new_name"]] <- new_element
@@ -277,7 +277,7 @@ doctors[[length(doctors) + 1]] <- "Chen, D."
 doctors
 ```
 
-If we assigned "Chen, D." to `doctors[[1]]` or `doctors[[2]]`, we would overwrite the existing elements. If we assigned "Chen, D." to `doctors[[4]]`, it would work, but it would also add a new empty element to `doctors[[3]]`.
+If we had assigned "Chen, D." to `doctors[[1]]` or `doctors[[2]]`, we would've overwrite the existing elements. If we had assigned "Chen, D." to `doctors[[4]]`, it would work, but it would have also added a new empty element to `doctors[[3]]`.
 
 To change an individual element, as mentioned, it can be overwritten by assigning a new value to the list at the index of interest:
 
@@ -292,13 +292,13 @@ doctors
 
 ---
 
-## 4.3.3: Using Lists in Bioinformatic Analysis
+## 4.3.3 Using Lists in Bioinformatic Analysis
 
 ---
 
 ### The strsplit() Function
 
-Some functions return lists. One example is the `strsplit()` function, which splits a character value into separate substrings (components of the original character value). How the character value is split is determined by the *delimiter*, which is a character(s) that denotes separate "chunks" of data. The result of splitting a character value on a delimiter is a vector containing shorter "chunks" of the original value, where each substring (chunk) is a separate element in the vector, and the delimiter is no longer present. The `strsplit()` function returns these vectors in a list.
+Some functions return lists. One example is the `strsplit()` function, which splits a character value into separate substrings (components of the original character value). How the character value is split is determined by the *delimiter*, which is a character(s) that denotes separate "chunks" of data. The result of splitting a character value on a delimiter is a vector containing shorter "chunks" of the original value, where each chunk (also known as a *substring*) is a separate element in the vector, and the delimiter is no longer present. The `strsplit()` function returns the vector as part of a list.
 
 Usage: `strsplit(x, split)`
 Arguments: `x` - character value or vector of character values
@@ -308,22 +308,22 @@ Return value: list of vectors, one vector per character value in `x`
 For example, if we want to split the character value "Davis, H." at the comma, the comma would be our delimiter:
 
 ```{r}
-strsplit("Davis, H.", ",")
+strsplit("Davis, H.", split = ",")
 ```
 
 It returns a list of length 1, which contains a vector of length 2. Splitting the original character value at the comma resulted in two "chunks": one character value with all of the letters before the comma, and one with all the letters after. 
 
-Another useful function when working with lists is `unlist()`. The `unlist()` function turns a list into a vector, but can only be used if all of list elements are of the same type, such as those in the doctors list:
+Another useful function when working with lists is `unlist()`. The `unlist()` function turns a list into a vector, but can only be used if all of list elements are of the same type, such as those in the doctors list (character type):
 
 ```{r}
 doctors_vector <- unlist(doctors)
 doctors_vector
 ```
 
-Now we can split all three character values in `doctors_vector` with `strsplit()` at the comma:
+Now we can split all three character values in `doctors_vector` at once with `strsplit()`, splitting at the comma:
 
 ```{r}
-strsplit(doctors_vector, ",")
+strsplit(doctors_vector, split = ",")
 ```
 
 Now it returns a list of length 3, with a character vector at each element. Note that the same delimiter applies to all elements of the input vector.
@@ -347,19 +347,19 @@ Each DNA sequence is now a vector of bases in the `split_seqs` list.
 Now we can perform analyses like calculating the GC content of each sequence. First we can check which bases are "G" or "C" in the first sequence:
 
 ```{r}
-split_seqs[[1]]=="G" | split_seqs[[1]]=="C"
+split_seqs[[1]] == "G" | split_seqs[[1]] == "C"
 ```
 
 Another helpful function is the `which()` function. The `which()` function takes a logical vector and returns the positional indices of the elements which are `TRUE`. It answers the question "which indices are `TRUE`?":
 
 ```{r}
-which(split_seqs[[1]]=="G" |  split_seqs[[1]]=="C")
+which(split_seqs[[1]] == "G" |  split_seqs[[1]] == "C")
 ```
 
 We can then determine the length of the vector returned by `which()`:
 
 ```{r}
-numGC <- length(which(split_seqs[[1]]=="G" | split_seqs[[1]]=="C"))
+numGC <- length(which(split_seqs[[1]] == "G" | split_seqs[[1]] == "C"))
 numGC
 ```
 
@@ -373,7 +373,7 @@ numGC/numBases
 We can nest all of this together and directly calculate the GC content in one line of code. Let's use the second sequence as an example:
 
 ```{r}
-length(which(split_seqs[[2]]=="G" | split_seqs[[2]]=="C")) / length(split_seqs[[2]])
+length(which(split_seqs[[2]] == "G" | split_seqs[[2]] == "C")) / length(split_seqs[[2]])
 ```
 
 ---

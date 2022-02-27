@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE, error = TRUE, warning = TRUE)
 
 ---
 
-## 4.2.1: Logical Indexing
+## 4.2.1 Logical Indexing
 
 ---
 
@@ -27,7 +27,7 @@ colnames(pt_blood) <- c("Age", "HGB", "RBC", "WBC", "BG")
 pt_blood
 ```
 
-When executing a logical expression on a matrix, it returns a **matrix of logical values**. Each element is evaluated individually.
+When executing a logical expression on a matrix, it returns a *matrix of logical values*. Each element is evaluated individually.
 
 A logical expression with a matrix is equivalent to asking: In this matrix, which values are ______?
 
@@ -49,13 +49,13 @@ You will notice that there is no comma used in this type of indexing. Much like 
 pt_blood[pt_blood < 10]
 ```
 
-In this case it returns a vector containing the first three values in the RBC column and all the values in the WBC column because these are all less than 10.
+In this case it returns a vector containing the first three values in the RBC column and all the values in the WBC column because these are all less than 10. Why is the result a vector and not a matrix? In many cases, not all rows or columns contain the same number of `TRUE` values. In our logical matrix above, for example, the `RBC` column had three `TRUE` values while the WBC value had four, and you can't have a matrix with unequal row or column lengths.
 
 ---
 
 ### Logical Expressions & Indexing with Matrix Rows
 
-When executing a logical expression on a **matrix row**, it returns a **vector of logical values**. Each element in the matrix row is evaluated individually.
+When executing a logical expression on a *matrix row*, it returns a *vector of logical values*. Each element in the matrix row is evaluated individually.
 
 A logical expression with a matrix row is equivalent to asking: In this matrix row, which values are  ______?
 
@@ -64,42 +64,42 @@ In the case of our `pt_blood` matrix, this is equivalent to: For patient X, whic
 For example: For patient A, which measurements are greater than 10?
 
 ```{r}
-pt_blood["pt_A",] > 10
+pt_blood["pt_A", ] > 10
 ```
 
-Notice that we have one logical value for each column, meaning we have a vector of **logical column indices**.
+Notice that we have one logical value for each column, meaning we have a vector of *logical column indices*.
 
-Thus, if we use the results of this logical expression to index our matrix, we need to put it in the place of column indices. The syntax for indexing a matrix with a vector of logical column indices is:
+Thus, if we use the results of this logical expression to index our matrix, we need to put it in the place of *column indices*. The syntax for indexing a matrix with a vector of logical column indices is:
 
-    matrix_name[,logical_column_indices]
+    matrix_name[ ,logical_column_indices]
     
 Similarly, if you use a logical expression on a row to index a matrix, the syntax is also:
 
-    matrix_name[,logical_expression_on_row]
+    matrix_name[ ,logical_expression_on_row]
     
-To clarify, the difference between these two forms of syntax is that in the first example, we are passing in a pre-determined vector of logicals that correspond to indices for the matrix columns, whereas in the second example, we are performing a logical evaluation on values in the rows that correspond to a particular column(s). The end result is the same.
+To clarify, the difference between these two forms of syntax is that in the first example, we are passing in a pre-determined vector of logicals that correspond to indices for the matrix columns, whereas in the second example, we are performing a logical evaluation on values in the rows that correspond to a particular column or columns. The end result is the same.
     
 Let's illustrate this difference with an example. For patient A, Age, HGB and BG values were all greater than 10. We can save the logical expression we wrote above to a variable and then use that variable as our column indices:
 
 ```{r}
-logical_col_index <- pt_blood["pt_A",] > 10
+logical_col_index <- pt_blood["pt_A", ] > 10
 
-# matrix_name[,logical_column_indices]
-pt_blood[,logical_col_index]
+# matrix_name[ ,logical_column_indices]
+pt_blood[ ,logical_col_index]
 ```
 
-Or we can save the step of assigning an intermediate variable by instead using the logical expression directly when indexing the matrix:
+Or we can skip the step of assigning an intermediate variable by instead using the logical expression directly when indexing the matrix:
 
 ```{r}
-# matrix_name[,logical_expression_on_row]
-pt_blood[,pt_blood["pt_A",] > 10]
+# matrix_name[ ,logical_expression_on_row]
+pt_blood[ ,pt_blood["pt_A", ] > 10]
 ```
 
 ---
 
 ### Logical Expressions & Indexing with Matrix Columns
 
-When executing a logical expression with a **matrix column**, it returns a **vector of logical values**. Each element in the matrix column is evaluated individually.
+Similarly, when executing a logical expression with a *matrix column*, it returns a *vector of logical values*. Each element in the matrix column is evaluated individually.
 
 A logical expression with a matrix column is equivalent to asking: In this matrix column, which values are ______?
 
@@ -108,45 +108,45 @@ In the case of our `pt_blood` matrix, this is equivalent to: For measurement X, 
 For example: For blood glucose (BG), which patients have a level greater than 90?
 
 ```{r}
-pt_blood[,"BG"] > 90
+pt_blood[ ,"BG"] > 90
 ```
 
-Notice that we have one logical value for each row, meaning we have a vector of **logical row indices**. 
+Notice that we have one logical value for each row, meaning we have a vector of *logical row indices*. 
 
-Thus, if we use the results of this logical expression to index our matrix, we need to put it in the place of row indices. The syntax for indexing a matrix with a vector of logical row indices is:
+Thus, if we use the results of this logical expression to index our matrix, we need to put it in the place of *row indices*. The syntax for indexing a matrix with a vector of logical row indices is:
 
-        matrix_name[logical_row_indices,]
+        matrix_name[logical_row_indices, ]
     
 Similarly, if you use a logical expression on a column to index a matrix, the syntax is also:
 
-        matrix_name[logical_expression_on_column,]
+        matrix_name[logical_expression_on_column, ]
         
-To clarify, the difference between these two forms of syntax is that in the first example, we are passing in a pre-determined vector of logicals that correspond to indices for the matrix rows, whereas in the second example, we are performing a logical evaluation on values in the columns that correspond to a particular row(s). The end result is the same.
+To clarify, the difference between these two forms of syntax is that in the first example, we are passing in a pre-determined vector of logicals that correspond to indices for the matrix rows, whereas in the second example, we are performing a logical evaluation on values in the columns that correspond to a particular row or rows. The end result is the same.
     
 Let's illustrate this difference with an example. For blood glucose level (BG), patients B and D had values greater than 90. We can save the logical expression we wrote above to a variable and then use that variable as our row indices:
 
 ```{r}
-logical_row_index <- pt_blood[,"BG"] > 90
+logical_row_index <- pt_blood[ ,"BG"] > 90
 
 # matrix_name[logical_row_indices,]
-pt_blood[logical_row_index,]
+pt_blood[logical_row_index, ]
 ```
 
-Or we can save the step of assigning an intermediate variable by instead using the logical expression directly when indexing the matrix:
+Or we can skip the step of assigning an intermediate variable by instead using the logical expression directly when indexing the matrix:
 
 ```{r}
 # matrix_name[logical_expression_on_column,]
-pt_blood[pt_blood[,"BG"] > 90,]
+pt_blood[pt_blood[ ,"BG"] > 90, ]
 ```
     
 Logical row indices and logical column indices can also be combined:
 
-        matrix_name[logical_expression_on_column,logical_expression_on_row]
+        matrix_name[logical_expression_on_column, logical_expression_on_row]
         
 For example, we can determine which patients have a blood glucose measurement greater than 90, and which measurements from patient A have a value greater than 10:
 
 ```{r}
-pt_blood[pt_blood[,"BG"] > 90, pt_blood["pt_A",] > 10]
+pt_blood[pt_blood[ ,"BG"] > 90, pt_blood["pt_A", ] > 10]
 ```
 
 ---
@@ -164,14 +164,14 @@ Return value: vector of values
 Logical expression on a matrix row
 Return value: vector of logical column indices
 
-Indexing with a vector of logical column indices: `matrix_name[,logical_column_indices]`
+Indexing with a vector of logical column indices: `matrix_name[ ,logical_column_indices]`
 Return value: matrix containing all rows, indexed columns
 
 **Matrix Column**
 Logical expression on a matrix column
 Return value: vector of logical row indices
 
-Indexing with a vector of logical row indices: `matrix_name[logical_row_indices,]`
+Indexing with a vector of logical row indices: `matrix_name[logical_row_indices, ]`
 Return value: matrix containing indexed rows, all columns
 
 ---
@@ -182,7 +182,7 @@ Return value: matrix containing indexed rows, all columns
 
 ### Functions Applied to Each Element and Information Functions
 
-For the rest of this section we will work with expression levels for 7 randomly chosen genes across 5 human tissues (whole blood, liver, lung, pancreas, and stomach). Expression levels are measured in transcripts per million (TPM), where the higher the TPM value, the higher the gene expression in that tissue:
+For the rest of this section we will work with expression levels for seven randomly chosen genes across five human tissues (whole blood, liver, lung, pancreas, and stomach). Expression levels are measured in transcripts per million (TPM), where the higher the TPM value, the higher the gene expression in that tissue.
 
 ```{r}
 blood <- c(7.28, 14.32, 1.67, 0.06, 0.00, 0.01, 8.91)
@@ -190,6 +190,7 @@ liver <- c(0.32, 10.87, 0.29, 0.01, 14.98, 0.00, 15.33)
 lung <- c(1.36, 31.60, 4.03, 0.04, 0.02, 0.04, 36.50)
 pancreas <- c(0.04, 12.02, 0.15, 37.65, 0.13, 0.01, 24.20)
 stomach <- c(0.60, 12.17, 0.84, 0.85, 0.00, 0.04, 36.59)
+# Create matrix
 tissue_TPM <- rbind(blood, liver, lung, pancreas, stomach)
 colnames(tissue_TPM) <- c("CD19", "CTCF", "FCER1A", "KIRREL2", "LPA", "RBFOX1", "TUBG1")
 tissue_TPM
@@ -200,7 +201,7 @@ As with vectors, many functions are applied to each individual matrix element. T
 For example, when we apply `round()` and `log()` to the `tissue_TPM` matrix as below, the natural log of each element will be taken and rounded to two digits, and a matrix with each element transformed is returned:
 
 ```{r}
-round(log(tissue_TPM), digits=2)
+round(log(tissue_TPM), digits = 2)
 ```
 
 Similarly, many of the functions we learned to provide information about vectors behave the same way with matrices.
@@ -261,15 +262,15 @@ The transposed version of `tissue_TPM` has genes as rows and tissues as columns.
 The `cor()` function can be used in a different way with matrices than with vectors. Instead of providing two vectors to be correlated, the entire matrix can be used as the only argument, and the correlation between each *pair of columns* will be calculated:
 
 ```{r}
-tissue_correlations <- round(cor(tissue_TPM_transposed), digits=2)
+tissue_correlations <- round(cor(tissue_TPM_transposed), digits = 2)
 tissue_correlations
 ```
 
-The correlation between the expression of the 7 genes in blood and liver is 0.41, as seen at both `[blood, liver]` and `[liver, blood]`. 
+The correlation between the expression of the seven genes in blood and liver is 0.41, as seen at both `[blood, liver]` and `[liver, blood]`. 
 
-The correlation between the expression of the 7 genes in pancreas and stomach is 0.42, as seen at both `[pancreas, stomach]` and `[stomach, pancreas]`. 
+The correlation between the expression of the seven genes in pancreas and stomach is 0.42, as seen at both `[pancreas, stomach]` and `[stomach, pancreas]`. 
 
-This is a symmetric 2D matrix, as discussed in 4.1.1. The rows and columns are the same set of samples, and each value is a measurement of the relationship between the samples.
+This is a symmetric 2D matrix, as discussed in Supplement 4.1.1. The rows and columns are the same set of samples, and each value is a measurement of the relationship between the samples.
 
 All of the tissues are perfectly correlated with themselves, so along the diagonal of the matrix all values are 1.
 
@@ -281,13 +282,13 @@ tissue_correlations == t(tissue_correlations)
 
 ---
 
-## 4.2.3: R Packages & Heat Maps
+## 4.2.3 R Packages & Heat Maps
 
 ---
 
 ### R Packages
 
-An R package is a collection of functions and/or data sets that can be installed to add greater functionality to R. To the right you will see a tab called "Packages" that lists all of the packages already installed to the JupyterHub R server.
+An R package is a collection of functions and/or datasets that can be installed to add greater functionality to R. To the right you will see a tab called "Packages" that lists all of the packages already installed to the JupyterHub R server.
 
 Some examples of packages you will come across in this course include:
 `edgeR`    - Functions for the analysis of RNA sequencing data
@@ -298,7 +299,7 @@ In this section we will be learning about heat maps using the `pheatmap` package
 
 Before you can use a package, it needs to be installed and loaded. **All of the packages you will need to use in this course have already been installed on the server**, but if you need to install packages in the future on a different server or computer, you will need the following functions.
 
-Many R packages, including `pheatmap`, can be installed using the `install.packages()` function:
+Many R packages, including `pheatmap`, can be installed using the `install.packages()` function, which installs packages stored in the standard R repository CRAN (https://cran.r-project.org/):
 
     install.packages("pheatmap")
 
@@ -310,9 +311,9 @@ And then install the Bioconductor package using the function `BiocManager::insta
 
     BiocManager::install("edgeR")
 
-**Do not worry about installation for this course--this information is provided for your interest and potential future needs.**
+**Do not worry about installation for this course - this information is provided for your interest and potential future needs.**
 
-Once a package is installed, it must be **loaded** from the **package library** before any of the functions or data sets that come with the package can be used. The `pheatmap` package contains a function called `pheatmap()`. If we try to use the function now, it will not work:
+Once a package is installed, it must be *loaded* from the *package library* before any of the functions or data sets that come with the package can be used. The `pheatmap` package contains a function called `pheatmap()`. If we try to use the function now, it will not work:
 
 ```{r}
 pheatmap(tissue_TPM)
@@ -349,9 +350,9 @@ pheatmap(tissue_TPM)
 
 You can see that on the left and top sides of the heat map there are *dendrograms*. A dendrogram is a tree diagram that displays the results of *hierarchical clustering*. Hierarchical clustering is method of clustering data based on the similarity of pieces of data to one another. 
 
-The dendrogram to the left of the plot shows the clustering of the 5 different tissues based on the similarity of their expression profiles for the 7 genes. 
+The dendrogram to the left of the plot shows the clustering of the five different tissues based on the similarity of their expression profiles for the seven genes. 
 
-Examining the dendrogram starting closest to the CTCF column , we can see that it groups the blood and the liver tissues together, as well as the lung and the stomach tissues together. Then as we move further left, these four tissues are joined together before finally being joined with the pancreas. 
+Examining the dendrogram starting closest to the CTCF column, we can see that it groups the blood and the liver tissues together, as well as the lung and the stomach tissues together. Then as we move further left, these four tissues are joined together before finally being joined with the pancreas. 
 
 This indicates:
 - blood and liver tissues are more similar to one another than to the other tissues
@@ -363,6 +364,6 @@ Though it may not be perceptible depending on the size of your computer screen, 
 Looking back at the heat map, we can make some additional observations with respect to these five tissues:
 - CTCF and TUBG1 are ubiquitously expressed - they are expressed in all 5 tissue types
 - KIRREL2, LPA and CD19 are tissue specific - they are expressed in one tissue type
-- FCER1A and RBFOX1 are weakly expressed in these tissues - they are expressed at extremely low levels if at all in all five tissue types
+- FCER1A and RBFOX1 are weakly expressed in these tissues - they are expressed at extremely low levels, if at all, in all five tissue types.
 
 ---
