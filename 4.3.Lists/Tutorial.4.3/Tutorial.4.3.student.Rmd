@@ -114,7 +114,7 @@ Use named indexing to assign the total number of patients involved in the study 
 
 ---
 
-## 4.3.2 Working with Lists
+## 4.3.2 Working with Lists & 4.3.3 Using Lists in Bioinformatic Analysis
 
 ---
 
