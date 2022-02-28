@@ -1,5 +1,5 @@
 ---
-title: "Week 4 Assignment"
+title: "Assignment 4"
 output: html_document
 ---
 
@@ -30,13 +30,14 @@ This assignment covers the content in week 4 lectures and tutorials.
 
 ---
 
-BioID is a method for determining which proteins are in close proximity to one another within the cell. In this assignment we will work with data from the Human Cell Map: (https://cell-map.org/).
+BioID is a method for determining which proteins are in close proximity to one another within the cell. In this assignment we will work with data from the Human Cell Map (https://cell-map.org/).
 
-To ensure that the main data set is entered correctly, a matrix with the SAINT scores for each protein pair is provided. A SAINT score is measurement of the confidence that 2 proteins interact with one another. In the matrix below, a score of 1 indicates that 2 proteins definitely interact, and 0 indicates that there is no evidence of interaction. Along the diagonal (proteins vs. themselves) all values are 1.
+To ensure that the main data set is entered correctly, a matrix with the SAINT scores for each protein pair is provided. A SAINT score is measurement of the confidence that two proteins interact with one another. In the matrix below, a score of 1 indicates that two proteins definitely interact, and 0 indicates that there is no evidence of interaction. Along the diagonal (proteins vs. themselves) all values are 1.
 
 ```{r}
-PPI_scores <- matrix(c(1,0,0,1,0,0,1,0,0,0,0,0,0,1,0,1,0,0,1,1,0,0,0.98,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0.78,1,0,0,1,0,0,1,0,0,0,0,0,0,1,0,1,0,0,1,1,0,0,1,0.99,0,0.3,0,0,0,1,0,0,1,1,0,0,1,1,0.95,1,0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,1,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0.98,0,0,1,1,0,0,1,0,0,1,0,0,0,0,0,0,0.99,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0.95,0,0,0,1,1,0,0,0,0,0,0,0,0.3,1,0,0,1,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0.5,1,0,0.78,1,0,0,1,0,0,0,0,0,0.5,1), nrow=14)
-proteins <- c("AARS2","CCDC14","COIL","CS","PCM1","PCNT","PDHA1","PRPF8","SASS6","SEPT10","SEPT9","STIL","TERF2IP","TRAP1")
+PPI_scores <- matrix(c(1,0,0,1,0,0,1,0,0,0,0,0,0,1,0,1,0,0,1,1,0,0,0.98,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0.78,1,0,0,1,0,0,1,0,0,0,0,0,0,1,0,1,0,0,1,1,0,0,1,0.99,0,0.3,0,0,0,1,0,0,1,1,0,0,1,1,0.95,1,0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,1,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0.98,0,0,1,1,0,0,1,0,0,1,0,0,0,0,0,0,0.99,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0.95,0,0,0,1,1,0,0,0,0,0,0,0,0.3,1,0,0,1,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0.5,1,0,0.78,1,0,0,1,0,0,0,0,0,0.5,1), nrow = 14)
+proteins <- c("AARS2", "CCDC14", "COIL", "CS", "PCM1", "PCNT", "PDHA1",
+              "PRPF8", "SASS6", "SEPT10", "SEPT9", "STIL", "TERF2IP", "TRAP1")
 rownames(PPI_scores) <- proteins
 colnames(PPI_scores) <- proteins
 PPI_scores
@@ -100,7 +101,7 @@ Two proteins were not included in the above matrix as they have an unknown cellu
 
 #### c.
 (1 mark) 
-Use **named** indexing to output the subcompartment for the protein PRPF8. Assign the value to a variable named "PRPF8_subcompartment".
+Use *named* indexing to output the subcompartment for the protein PRPF8. Assign the value to a variable named "PRPF8_subcompartment".
 
 ```{r Assignment.W4.1.c}
 # Write and execute your code here
@@ -114,7 +115,7 @@ Use **named** indexing to output the subcompartment for the protein PRPF8. Assig
 
 #### d.
 (1 mark)
-Use **positional** indexing to output the main compartment for all proteins. Assign the output vector to a variable named "all_main_compartments".
+Use *positional* indexing to output the main compartment for all proteins. Assign the output vector to a variable named "all_main_compartments".
 
 ```{r Assignment.W4.1.d}
 # Write and execute your code here
@@ -179,7 +180,7 @@ Create a list called "PPI_data" with the following elements in the order they ar
 
 #### b.
 (1 mark)
-Use **positional** indexing to output the VALUE of the second element in `PPI_data`. Assign the output value to a variable named "PPI_data_element_2".
+Use *positional* indexing to output the VALUE of the second element in `PPI_data`. Assign the output value to a variable named "PPI_data_element_2".
 
 ```{r Assignment.W4.2.b}
 # Write and execute your code here
@@ -193,7 +194,7 @@ Use **positional** indexing to output the VALUE of the second element in `PPI_da
 
 #### c.
 (1 mark)
-Name the list elements in `PPI_data`. Use the names in the order specified below. 
+Name the list elements in `PPI_data`. Use the names in the order specified below: 
 - "cell_line"
 - "reference"
 - "num_proteins"
@@ -212,7 +213,7 @@ Name the list elements in `PPI_data`. Use the names in the order specified below
 
 #### d.
 (1 mark)
-Use **named** indexing to output the full cellular localization information for the protein AARS2 (both the main compartment and subcompartment) from `PPI_data`. Assign the output vector to a variable named "AARS2_localization".
+Use *named* indexing to output the full cellular localization information for the protein AARS2 (both the main compartment and subcompartment) from `PPI_data`. Assign the output vector to a variable named "AARS2_localization".
 
 ```{r Assignment.W4.2.d}
 # Write and execute your code here
@@ -226,7 +227,8 @@ Use **named** indexing to output the full cellular localization information for 
 
 #### e.
 (1 mark)
-Add a new element called "proteins" to the `PPI_data` list. It should be a character vector with the names of all 14 proteins in alphabetical order. Hint: you should use the names of one of the dimensions of `PPI_scores`.
+Add a new element called "proteins" to the `PPI_data` list. It should be a character vector with the names of all 14 proteins in alphabetical order. 
+Hint: you should use the names of one of the dimensions of `PPI_scores`.
 
 ```{r Assignment.W4.2.e}
 # Write and execute your code here
@@ -246,7 +248,7 @@ The cellular localization for two of the proteins (SASS6 and PDHA1) were not pro
 
 #### a.
 (1 mark)
-Load the pheatmap package.
+Load the `pheatmap` package.
 
 ```{r Assignment.W4.3.a}
 # Write and execute your code here

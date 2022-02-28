@@ -128,14 +128,14 @@ Let's illustrate this difference with an example. For blood glucose level (BG), 
 ```{r}
 logical_row_index <- pt_blood[ ,"BG"] > 90
 
-# matrix_name[logical_row_indices,]
+# matrix_name[logical_row_indices, ]
 pt_blood[logical_row_index, ]
 ```
 
 Or we can skip the step of assigning an intermediate variable by instead using the logical expression directly when indexing the matrix:
 
 ```{r}
-# matrix_name[logical_expression_on_column,]
+# matrix_name[logical_expression_on_column, ]
 pt_blood[pt_blood[ ,"BG"] > 90, ]
 ```
     
@@ -192,13 +192,14 @@ pancreas <- c(0.04, 12.02, 0.15, 37.65, 0.13, 0.01, 24.20)
 stomach <- c(0.60, 12.17, 0.84, 0.85, 0.00, 0.04, 36.59)
 # Create matrix
 tissue_TPM <- rbind(blood, liver, lung, pancreas, stomach)
-colnames(tissue_TPM) <- c("CD19", "CTCF", "FCER1A", "KIRREL2", "LPA", "RBFOX1", "TUBG1")
+colnames(tissue_TPM) <- c("CD19", "CTCF", "FCER1A", "KIRREL2", 
+                          "LPA", "RBFOX1", "TUBG1")
 tissue_TPM
 ```
 
 As with vectors, many functions are applied to each individual matrix element. This includes functions like `log()`, `round()`, `sqrt()`, `toupper()`, `tolower()`, `grepl()`, `gsub()`, and `nchar()`.
 
-For example, when we apply `round()` and `log()` to the `tissue_TPM` matrix as below, the natural log of each element will be taken and rounded to two digits, and a matrix with each element transformed is returned:
+For example, when we apply `round()` and `log()` to the `tissue_TPM` matrix below, the natural log of each element will be taken and rounded to two digits, and a matrix with each element transformed is returned:
 
 ```{r}
 round(log(tissue_TPM), digits = 2)
@@ -234,7 +235,7 @@ max(tissue_TPM)
 
 ### Matrix Specific Functions & Matrix Specific Function Behaviour
 
-Some functions are applicable specifically to matrices. The `colMeans()` and `rowMeans()` functions, for example, return a vector of the mean of each column and each row respectively:
+Some functions are applicable specifically to matrices. The `colMeans()` and `rowMeans()` functions, for example, return a vector of the mean of each column and each row respectively.
 
 ```{r}
 colMeans(tissue_TPM)

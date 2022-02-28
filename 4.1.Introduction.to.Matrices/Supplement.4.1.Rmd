@@ -33,7 +33,7 @@ Plant Heights (cm)
 | soil A | 5.9 | 7.2 | 6.8  |
 | soil B | 3.6 | 4.2 | 3.9  |
 
-*Matrices* are a type of data structure in R for storing data arranged in rows and columns. Like vectors, they can only contain one data type. Whereas vectors are like a single row in a table, matrices are 2-dimensional and thus are like a table with multiple rows and columns.
+*Matrices* are a type of data structure in R for storing data arranged in rows and columns. Like vectors, they can only contain one data type. Whereas vectors are like a single row in a table, matrices are 2 dimensional and thus are like a table with multiple rows and columns.
 
 There are two types of 2D data that you will encounter in data analysis:
 - *Non-symmetric 2D data*
@@ -138,7 +138,7 @@ pt_blood <- matrix(pt_data, nrow = 3)
 pt_blood
 ```
 
-This creates the exact same matrix that we made when we specified `ncol=4` because R determines the number of columns by dividing the number of elements by `nrow`.
+This creates the exact same matrix that we made when we specified `ncol = 4` because R determines the number of columns by dividing the number of elements by `nrow`.
 
 As we noted earlier, matrices are filled "column-wise". What would happen if we stored our data in a vector by adding elements going across the rows instead of down the columns and created a matrix? Here is the data table again:
 
@@ -162,7 +162,7 @@ If you enter your data row-wise into the vector you are using to create a matrix
 
 ```{r}
 pt_blood <- matrix(pt_data, ncol = 4,  
-                   byrow= TRUE)
+                   byrow = TRUE)
 pt_blood
 ```
 
@@ -243,14 +243,14 @@ This time the matrix has column names matching the names of the vectors used to 
 
 ### Positional Indices of a Matrix
 
-The number of rows and columns in a matrix (the dimensions) can be retrieved using the functions `nrow()` and `ncol()`:
+The number of rows and columns in a matrix (the dimensions) can be retrieved using the functions `nrow()` and `ncol()`.
 
 ```{r}
 nrow(pt_blood)
 ncol(pt_blood)
 ```
 
-Alternatively, the function `dim()` returns a single vector of the number of rows followed by the number of columns:
+Alternatively, the function `dim()` returns a single vector of the number of rows followed by the number of columns.
 
 ```{r}
 dim(pt_blood)
@@ -281,7 +281,7 @@ Individual elements in a matrix are indexed by their row and column index: `[row
 
 To index an individual element in a matrix, we use the following syntax:
 
-        matrix_name[row_index,column_index]
+        matrix_name[row_index, column_index]
 
 For example, to get the element at the first row and column in `pt_blood`:
 
@@ -354,9 +354,10 @@ The following 3 x 4 table is filled with the *element index* for each element if
 | [2,] | 2    | 5    | 8    | 11   |
 | [3,] | 3    | 6    | 9    | 12   |
 
-In this way we can index individual elements in different columns and rows without requiring that they share column and row indices:
+In this way we can index individual elements in different columns and rows without requiring that they share column and row indices.
 
 For example:
+
 ```{r}
 pt_blood[c(1, 3, 7, 11)]
 ```
@@ -393,7 +394,7 @@ Using vectors of row and column names, we can also index multiple rows and/or co
 pt_blood[c("pt_A", "pt_B"), c("Age", "RBC")]
 ```
 
-Positional and named indexing can be mixed. However, all row indices must be of the same index type and all column indices must be of the same index type:
+Positional and named indexing can be mixed. However, all row indices must be of the same index type and all column indices must be of the same index type.
 
 ```{r}
 pt_blood[c("pt_A", "pt_B"), c(1, 3)]
@@ -411,7 +412,7 @@ We have data for a new patient:
 
 |           | Age | HGB  | RBC | WBC |
 | --------- | --- | ---- | --- | --- |
-| Paitent D | 37  | 14.3 | 4.9 | 7.2 |
+| Patient D | 37  | 14.3 | 4.9 | 7.2 |
 
 To add a new row to our matrix we can use the `rbind()` function:
 
@@ -429,7 +430,7 @@ Or it can be created before hand:
         vector_name <- c(...)
         rbind(matrix_name, vector_name)
 
-Similarlym a new column can be added with the `cbind()` function using either method:
+Similarly, a new column can be added with the `cbind()` function using either method:
 
         cbind(matrix_name, column_name = vector1)
         

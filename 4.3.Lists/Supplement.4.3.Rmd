@@ -39,7 +39,7 @@ Blood Tests:
 
 *Lists* are an R data structure that solves this problem. A list is a collection of elements that can be different data types and/or data structures.
 
-Lists are 1-dimensional like vectors, however each element in a list does not have to be a single value like a vector. 
+Lists are 1 dimensional like vectors, however each element in a list does not have to be a single value like a vector. 
 
 List elements can be:
 - single values (vectors of length 1)
@@ -231,7 +231,7 @@ patient$appointments[2]
 
 ### Editing Lists
 
-At two of the patient's appointments, they received a referral to another doctor.
+At two of the patient's appointments, they received a referral to another doctor:
 
 |	         | Doctor   | Specialty  | Reason             |
 | ---------- | -------- | ---------- | ------------------ |

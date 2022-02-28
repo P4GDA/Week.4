@@ -24,13 +24,13 @@ At the end of this tutorial you should be able to:
 
 ---
 
-## 4.2.1: Logical Indexing
+## 4.2.1 Logical Indexing
 
 ---
 
 In this tutorial we will again look at SNP frequencies from the 1000 Genomes Project sourced from dbSNP (https://www.ncbi.nlm.nih.gov/snp/).
 
-We will look at 10 randomly chosen SNPs across 5 populations:
+We will look at 10 randomly chosen SNPs across five populations:
 - African (AFR)
 - East Asian (EAS)
 - European (EUR)
@@ -51,7 +51,8 @@ rs8362 <- c(0.47, 0.61, 0.30, 0.61, 0.30)
 rs9361 <- c(0.06, 0.00, 0.00, 0.00, 0.00)
 rs25531 <- c(0.09, 0.22, 0.13, 0.14, 0.05)
 
-SNPs <- cbind(rs671, rs1384, rs3077, rs4680, rs5093, rs6265, rs7412, rs8362, rs9361, rs25531)
+SNPs <- cbind(rs671, rs1384, rs3077, rs4680, rs5093, 
+              rs6265, rs7412, rs8362, rs9361, rs25531)
 rownames(SNPs) <- c("AFR", "EAS", "EUR", "SAS", "AMR")
 
 SNPs
@@ -93,7 +94,7 @@ Write a logical expression to answer the question: Which SNPs have an alternate 
 ```
 **Check your answer by running the above block** 
 
-Use the logical expression written above to output, for all populations, the allele frequencies of only the SNPs which have an alternate allele frequency greater than 0.05 in the South Asian population. Save the results to a variable called "SAS_SNPs_present_allele_freqs".
+Use the logical expression written above to output, for all populations, the allele frequencies of only the SNPs which have an alternate allele frequency greater than 0.05 in the South Asian population. Save the results to a variable named "SAS_SNPs_present_allele_freqs".
 
 ```{r}
 # Write and execute your code here
@@ -119,7 +120,7 @@ Output the allele frequencies for: all populations that contain an R, and all SN
 
 ---
 
-## 4.2.2: Matrix Functions & 4.2.3: R Packages & Heat Maps
+## 4.2.2 Matrix Functions
 
 ---
 
@@ -135,7 +136,8 @@ Use a matrix-specific function to output the mean alternate allele frequency for
 ```
 **Check your answer by running the above block** 
 
-Use the `summary()` function to get a summary of the alternate allele frequencies for each population. Assign the output to a variable named "SNP_summaries". Hint: You will need to nest another function inside of the `summary()` function.
+Use the `summary()` function to get a summary of the alternate allele frequencies for each population. Assign the output to a variable named "SNP_summaries". 
+Hint: You will need to nest another function inside of the `summary()` function.
 
 ```{r}
 # Write and execute your code here
@@ -147,7 +149,7 @@ Use the `summary()` function to get a summary of the alternate allele frequencie
 ```
 **Check your answer by running the above block** 
 
-Load the pheatmap package (it should already be installed).
+Load the `pheatmap` package (it should already be installed).
 
 ```{r}
 # Write and execute your code here
@@ -171,7 +173,7 @@ Create a heat map of alternate allele frequencies. Assign the call to the `pheat
 ```
 **Check your answer by running the above block** 
 
-Are there any SNPs that seem to have similar frequencies across all 5 populations?
+Are there any SNPs that seem to have similar frequencies across all five populations?
 
 Are there any SNPs that are uniquely absent in one population?
 

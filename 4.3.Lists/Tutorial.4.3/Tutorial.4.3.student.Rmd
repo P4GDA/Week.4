@@ -23,13 +23,13 @@ At the end of this tutorial you should be able to:
 
 ---
 
-## 4.3.1: Introduction to Lists
+## 4.3.1 Introduction to Lists
 
 ---
 
 You are studying a group of patients with breast cancer. In this tutorial will we create a list to hold all of the information about the study.
 
-Mutations in 4 genes commonly associated with breast cancer are being examined: BRCA1, BRCA2, PTEN, TP53. Create a character vector called "genes" to hold the names of the 4 genes in the given order.
+Mutations in four genes commonly associated with breast cancer are being examined: BRCA1, BRCA2, PTEN, TP53. Create a character vector named "genes" to hold the names of the four genes in the given order.
 
 ```{r}
 # Write and execute your code here
@@ -41,7 +41,7 @@ Mutations in 4 genes commonly associated with breast cancer are being examined: 
 ```
 **Check your answer by running the above block** 
 
-Three hospitals are participating in the study. Below are the names of the hospitals, three letter hospital identifiers, and the number of patients at each hospital involved in the study.
+Three hospitals are participating in the study. Below are the names of the hospitals, three letter hospital identifiers, and the number of patients at each hospital involved in the study:
 
 Greenview General Hospital  GGH     3
 Mount Horn Hospital         MHH     5
@@ -76,7 +76,7 @@ Call the list "breast_cancer_data".
 ```
 **Check your answer by running the above block** 
 
-Use positional indexing to assign the names of the 4 genes being used to a variable named "indexed_genes".
+Use positional indexing to assign the names of the four genes being used to a variable named "indexed_genes".
 
 ```{r}
 # Write and execute your code here
@@ -88,7 +88,7 @@ Use positional indexing to assign the names of the 4 genes being used to a varia
 ```
 **Check your answer by running the above block** 
 
-Add the following names to the list elements: "total_patients", "genes", "hospital_pts"
+Add the following names to the list elements: "total_patients", "genes", "hospital_pts".
 
 ```{r}
 # Write and execute your code here
@@ -114,7 +114,7 @@ Use named indexing to assign the total number of patients involved in the study 
 
 ---
 
-## 4.3.2 Working with Lists & 4.3.3: Using Lists in Bioinformatic Analysis
+## 4.3.2 Working with Lists
 
 ---
 
@@ -171,7 +171,7 @@ Assign the patient mutation information for patient number 5 to a variable named
 ```
 **Check your answer by running the above block** 
 
-A new patient from Bayside Hospital has joined the study. The patient has a mutation in the BRCA2 gene and no mutations in any of the other 3 genes.
+A new patient from Bayside Hospital has joined the study. The patient has a mutation in the BRCA2 gene and no mutations in any of the other three genes.
 
 Update the list to include this patient. You will need to:
 - add the patient to the matrix at "pt_mutations" (Hint: this will be pt_10)
